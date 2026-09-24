@@ -1,0 +1,442 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mtt.local/contracts/v1",
+  "$defs": {
+    "Identity": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1",
+          "default": "1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "instrument_id": {
+          "title": "Instrument Id",
+          "type": "string"
+        },
+        "symbol": {
+          "title": "Symbol",
+          "type": "string"
+        },
+        "base": {
+          "title": "Base",
+          "type": "string"
+        },
+        "currency": {
+          "const": "EUR",
+          "default": "EUR",
+          "title": "Currency",
+          "type": "string"
+        },
+        "venue_id": {
+          "title": "Venue Id",
+          "type": "string"
+        },
+        "tick_size": {
+          "pattern": "^-?(?:0|[1-9]\\d{0,15})(?:\\.\\d{1,8})?$",
+          "title": "Tick Size",
+          "type": "string"
+        },
+        "lot_size": {
+          "pattern": "^-?(?:0|[1-9]\\d{0,15})(?:\\.\\d{1,8})?$",
+          "title": "Lot Size",
+          "type": "string"
+        },
+        "min_notional": {
+          "pattern": "^-?(?:0|[1-9]\\d{0,15})(?:\\.\\d{1,8})?$",
+          "title": "Min Notional",
+          "type": "string"
+        },
+        "paper_supported": {
+          "title": "Paper Supported",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "instrument_id",
+        "symbol",
+        "base",
+        "venue_id",
+        "tick_size",
+        "lot_size",
+        "min_notional",
+        "paper_supported"
+      ],
+      "title": "Identity",
+      "type": "object"
+    },
+    "Quote": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1",
+          "default": "1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "instrument_id": {
+          "title": "Instrument Id",
+          "type": "string"
+        },
+        "bid": {
+          "pattern": "^-?(?:0|[1-9]\\d{0,15})(?:\\.\\d{1,8})?$",
+          "title": "Bid",
+          "type": "string"
+        },
+        "ask": {
+          "pattern": "^-?(?:0|[1-9]\\d{0,15})(?:\\.\\d{1,8})?$",
+          "title": "Ask",
+          "type": "string"
+        },
+        "last": {
+          "pattern": "^-?(?:0|[1-9]\\d{0,15})(?:\\.\\d{1,8})?$",
+          "title": "Last",
+          "type": "string"
+        },
+        "available_quantity": {
+          "pattern": "^-?(?:0|[1-9]\\d{0,15})(?:\\.\\d{1,8})?$",
+          "title": "Available Quantity",
+          "type": "string"
+        },
+        "provider_id": {
+          "title": "Provider Id",
+          "type": "string"
+        },
+        "venue_id": {
+          "title": "Venue Id",
+          "type": "string"
+        },
+        "origin_feed_id": {
+          "title": "Origin Feed Id",
+          "type": "string"
+        },
+        "source_event_id": {
+          "title": "Source Event Id",
+          "type": "string"
+        },
+        "adapter_version": {
+          "title": "Adapter Version",
+          "type": "string"
+        },
+        "source_time": {
+          "title": "Source Time",
+          "type": "string"
+        },
+        "received_at": {
+          "title": "Received At",
+          "type": "string"
+        },
+        "license_status": {
+          "title": "License Status",
+          "type": "string"
+        },
+        "quality": {
+          "enum": [
+            "SIMULATED",
+            "STALE",
+            "READ_ONLY_PUBLIC"
+          ],
+          "title": "Quality",
+          "type": "string"
+        },
+        "revision": {
+          "title": "Revision",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "instrument_id",
+        "bid",
+        "ask",
+        "last",
+        "available_quantity",
+        "provider_id",
+        "venue_id",
+        "origin_feed_id",
+        "source_event_id",
+        "adapter_version",
+        "source_time",
+        "received_at",
+        "license_status",
+        "quality",
+        "revision"
+      ],
+      "title": "Quote",
+      "type": "object"
+    },
+    "Trade": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1",
+          "default": "1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "event_id": {
+          "title": "Event Id",
+          "type": "string"
+        },
+        "instrument_id": {
+          "title": "Instrument Id",
+          "type": "string"
+        },
+        "price": {
+          "pattern": "^-?(?:0|[1-9]\\d{0,15})(?:\\.\\d{1,8})?$",
+          "title": "Price",
+          "type": "string"
+        },
+        "quantity": {
+          "pattern": "^-?(?:0|[1-9]\\d{0,15})(?:\\.\\d{1,8})?$",
+          "title": "Quantity",
+          "type": "string"
+        },
+        "taker_side": {
+          "enum": [
+            "BUY",
+            "SELL",
+            "UNKNOWN"
+          ],
+          "title": "Taker Side",
+          "type": "string"
+        },
+        "provider_id": {
+          "title": "Provider Id",
+          "type": "string"
+        },
+        "origin_feed_id": {
+          "title": "Origin Feed Id",
+          "type": "string"
+        },
+        "source_time": {
+          "title": "Source Time",
+          "type": "string"
+        },
+        "quality": {
+          "enum": [
+            "SIMULATED",
+            "READ_ONLY_PUBLIC"
+          ],
+          "title": "Quality",
+          "type": "string"
+        }
+      },
+      "required": [
+        "event_id",
+        "instrument_id",
+        "price",
+        "quantity",
+        "taker_side",
+        "provider_id",
+        "origin_feed_id",
+        "source_time",
+        "quality"
+      ],
+      "title": "Trade",
+      "type": "object"
+    },
+    "OrderIntent": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1",
+          "default": "1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "instrument_id": {
+          "title": "Instrument Id",
+          "type": "string"
+        },
+        "account_id": {
+          "const": "demo-paper",
+          "default": "demo-paper",
+          "title": "Account Id",
+          "type": "string"
+        },
+        "mode": {
+          "const": "PAPER",
+          "default": "PAPER",
+          "title": "Mode",
+          "type": "string"
+        },
+        "side": {
+          "enum": [
+            "BUY",
+            "SELL"
+          ],
+          "title": "Side",
+          "type": "string"
+        },
+        "order_type": {
+          "const": "LIMIT",
+          "default": "LIMIT",
+          "title": "Order Type",
+          "type": "string"
+        },
+        "time_in_force": {
+          "const": "IOC",
+          "default": "IOC",
+          "title": "Time In Force",
+          "type": "string"
+        },
+        "quantity": {
+          "pattern": "^-?(?:0|[1-9]\\d{0,15})(?:\\.\\d{1,8})?$",
+          "title": "Quantity",
+          "type": "string"
+        },
+        "limit_price": {
+          "pattern": "^-?(?:0|[1-9]\\d{0,15})(?:\\.\\d{1,8})?$",
+          "title": "Limit Price",
+          "type": "string"
+        }
+      },
+      "required": [
+        "instrument_id",
+        "side",
+        "quantity",
+        "limit_price"
+      ],
+      "title": "OrderIntent",
+      "type": "object"
+    },
+    "JournalLine": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1",
+          "default": "1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "event_id": {
+          "title": "Event Id",
+          "type": "string"
+        },
+        "account_id": {
+          "const": "demo-paper",
+          "default": "demo-paper",
+          "title": "Account Id",
+          "type": "string"
+        },
+        "account": {
+          "title": "Account",
+          "type": "string"
+        },
+        "amount": {
+          "pattern": "^-?(?:0|[1-9]\\d{0,15})(?:\\.\\d{1,8})?$",
+          "title": "Amount",
+          "type": "string"
+        },
+        "currency": {
+          "const": "EUR",
+          "default": "EUR",
+          "title": "Currency",
+          "type": "string"
+        },
+        "mode": {
+          "const": "PAPER",
+          "default": "PAPER",
+          "title": "Mode",
+          "type": "string"
+        },
+        "created_at": {
+          "title": "Created At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "event_id",
+        "account",
+        "amount",
+        "created_at"
+      ],
+      "title": "JournalLine",
+      "type": "object"
+    },
+    "TaxRule": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1",
+          "default": "1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "rule_id": {
+          "title": "Rule Id",
+          "type": "string"
+        },
+        "rule_version": {
+          "title": "Rule Version",
+          "type": "string"
+        },
+        "tax_year": {
+          "title": "Tax Year",
+          "type": "integer"
+        },
+        "jurisdiction": {
+          "const": "NL",
+          "default": "NL",
+          "title": "Jurisdiction",
+          "type": "string"
+        },
+        "legislative_status": {
+          "enum": [
+            "PROPOSED",
+            "ADOPTED",
+            "PROMULGATED",
+            "REPEALED"
+          ],
+          "title": "Legislative Status",
+          "type": "string"
+        },
+        "implementation_status": {
+          "enum": [
+            "DRAFT",
+            "TESTED",
+            "APPROVED",
+            "RETIRED"
+          ],
+          "title": "Implementation Status",
+          "type": "string"
+        },
+        "valid_from": {
+          "title": "Valid From",
+          "type": "string"
+        },
+        "known_from": {
+          "title": "Known From",
+          "type": "string"
+        },
+        "official_url": {
+          "title": "Official Url",
+          "type": "string"
+        },
+        "content_hash": {
+          "title": "Content Hash",
+          "type": "string"
+        },
+        "reviewed_by": {
+          "title": "Reviewed By",
+          "type": "string"
+        }
+      },
+      "required": [
+        "rule_id",
+        "rule_version",
+        "tax_year",
+        "legislative_status",
+        "implementation_status",
+        "valid_from",
+        "known_from",
+        "official_url",
+        "content_hash",
+        "reviewed_by"
+      ],
+      "title": "TaxRule",
+      "type": "object"
+    }
+  }
+}

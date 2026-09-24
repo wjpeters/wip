@@ -1,0 +1,5 @@
+# Preserve upstream notices, Markdown hard breaks and generated/log output.
+*.md whitespace=-blank-at-eol
+docs/licenses/* -whitespace
+*generated.py whitespace=-blank-at-eof
+docs/evidence/*.txt -whitespace

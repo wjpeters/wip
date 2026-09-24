@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.venv/
+__pycache__/
+*.pyc
+*.tsbuildinfo
+.secrets/
+.env
+playwright-report/
+test-results/
+backups/
+target/
+.hypothesis/
+.pytest_cache/
+.ruff_cache/
