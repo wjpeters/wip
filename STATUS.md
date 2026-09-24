@@ -1,6 +1,6 @@
 # Opleverstatus · 24 september 2026
 
-Release `0.2.0`, M0/M1, alleen lokaal demo/paper. Geen `LIVE_VERIFIED` provider. De gebruiker verzorgt externe aansluitingen na oplevering. De ontwikkelomgeving en alle geheimen staan buiten iCloud. Zie [README](README.md).
+Release `0.2.0`, M0/M1, alleen lokaal demo/paper. Lokale branch `codex/m0-m1`; M0-commit `827e3a6`, M1-code/bewijs `45e7892`. Geen Git-remote of push. Geen `LIVE_VERIFIED` provider. De gebruiker verzorgt externe aansluitingen na oplevering. De ontwikkelomgeving en alle geheimen staan buiten iCloud. Zie [README](README.md).
 
 ## Gebouwd
 
