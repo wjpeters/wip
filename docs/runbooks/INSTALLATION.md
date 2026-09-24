@@ -57,7 +57,7 @@ rtk proxy env WEB_PORT=4187 docker compose -p wpos-mtt-qa -f infra/compose/compo
 
 ## Bij problemen
 
-Geen verbinding: controleer Docker en de vier healthchecks. Poort bezet: wijzig de webpoort via WEB_PORT voor alle services en gebruik dezelfde origin. Wachtwoord kwijt: maak eerst een versleutelde back-up; er is geen verborgen resetendpoint. Startup-reconciliatiefout: gebruik restore naar een nieuwe database en onderzoek de afwijking; wijzig niet blind een geldsaldo. In de app verlopen preview of andere rekeningversie: maak een nieuwe preview. Gepauzeerde fixture: hervat via Bronnen.
+Geen verbinding: controleer Docker en de vier services en de beschikbare healthchecks. Poort bezet: wijzig de webpoort via WEB_PORT voor alle services en gebruik dezelfde origin. Wachtwoord kwijt: maak eerst een versleutelde back-up; er is geen verborgen resetendpoint. Startup-reconciliatiefout: gebruik restore naar een nieuwe database en onderzoek de afwijking; wijzig niet blind een geldsaldo. In de app verlopen preview of andere rekeningversie: maak een nieuwe preview. Gepauzeerde fixture: hervat via Bronnen.
 
 ## Eerste ingebruikname en lege staten opnieuw testen
 
