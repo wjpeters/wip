@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "project": "wpos-mtt-qa",
+  "encrypted_sha256": "3a2052cbcb7f77b89a7896c6b84ac6a6f7a91409be4a94bce8a683397e56996d",
+  "ledger_balanced": true,
+  "cash_reconciled": true,
+  "restored_hashes": {
+    "account": "9352048bb77b57161f93053f3afecdb1bf2dd76914856fdaa93b77997f1f3fea",
+    "orders": "452938efdb140b451e01c95371aa692ec674339333657ffeb7c3ff678bdd9a00",
+    "ledger": "62317741cccb47a68a8a9760792e03739b84030e7f078cb37fbd0d666f6a92d3"
+  },
+  "matches_current_source": true,
+  "temporary_database_removed": true,
+  "tampered_backup_rejected_before_restore": true
+}

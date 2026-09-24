@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "url": "http://localhost:4186",
+  "unauthenticated_session_state": {
+    "authenticated": false,
+    "setup_required": false
+  },
+  "database_counts": {
+    "users": 1,
+    "paper_orders": 1
+  },
+  "containers": [
+    {
+      "service": "api",
+      "state": "running",
+      "health": "healthy",
+      "ports": ""
+    },
+    {
+      "service": "postgres",
+      "state": "running",
+      "health": "healthy",
+      "ports": ""
+    },
+    {
+      "service": "web",
+      "state": "running",
+      "health": "healthy",
+      "ports": "127.0.0.1:4186->8080/tcp"
+    }
+  ]
+}

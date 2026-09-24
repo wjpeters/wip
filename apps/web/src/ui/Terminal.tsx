@@ -1,0 +1,62 @@
+import {lazy,Suspense,useEffect,useState} from 'react';
+import type {Snapshot,History,Ledger,OrderIntent,Trade,Identity} from '../types';
+import {api} from '../api';
+import {Badge,Empty,Icon,Table,eur,num,stamp} from './components';
+const MarketChart=lazy(()=>import('./MarketChart'));
+export function Journal({ledger}:{ledger:Ledger|null}){
+ return <Table label="Paperjournaal" headers={['Gebeurtenis','Rekening','Bedrag EUR','Tijd']}>
+ {ledger?.lines.map((l,i)=><tr key={`${l.event_id}-${i}`}><td className="mono">{l.event_id}</td><td>{l.account}</td><td className={l.amount.startsWith('-')?'negative':'positive'}>{eur(l.amount)}</td><td>{stamp(l.created_at)}</td></tr>)}
+ </Table>
+}
+function Ticket({instrument,snapshot,onPreview,busy}:{instrument:Identity;snapshot:Snapshot;onPreview:(i:OrderIntent)=>void;busy:boolean}){
+ const quote=snapshot.quotes[instrument.instrument_id];
+ const [readOnly,setReadOnly]=useState(()=>window.matchMedia('(max-width:600px)').matches);
+ useEffect(()=>{const mq=window.matchMedia('(max-width:600px)');const change=()=>setReadOnly(mq.matches);mq.addEventListener('change',change);return()=>mq.removeEventListener('change',change)},[]);
+ const [side,setSide]=useState<'BUY'|'SELL'>('BUY');
+ const [quantity,setQuantity]=useState(instrument.base==='BTC'?'0.0100':instrument.base==='ETH'?'0.1000':'1.0000');
+ const [limit,setLimit]=useState(quote.ask);
+ return <form className="ticket" onSubmit={e=>{e.preventDefault();if(readOnly)return;onPreview({instrument_id:instrument.instrument_id,side,quantity,limit_price:limit,mode:'PAPER',account_id:'demo-paper',order_type:'LIMIT',time_in_force:'IOC'})}}>
+ <div className="section-title"><h2>{instrument.symbol}</h2><Badge>PAPER</Badge></div><p className="muted">Demo-account · Spot · EUR</p>
+ <div className="segmented"><button type="button" aria-pressed={side==='BUY'} className={side==='BUY'?'buy selected':''} onClick={()=>{setSide('BUY');setLimit(quote.ask)}}>Kopen</button><button type="button" aria-pressed={side==='SELL'} className={side==='SELL'?'sell selected':''} onClick={()=>{setSide('SELL');setLimit(quote.bid)}}>Verkopen</button></div>
+ <label htmlFor="quantity">Aantal ({instrument.base})</label><input id="quantity" disabled={readOnly} inputMode="decimal" required value={quantity} onChange={e=>setQuantity(e.target.value)}/>
+ <label htmlFor="limit">Limietprijs (EUR)</label><input id="limit" disabled={readOnly} inputMode="decimal" required value={limit} onChange={e=>setLimit(e.target.value)}/>
+ <dl className="facts"><dt>Ordertype</dt><dd>Limiet · IOC</dd><dt>Uitvoering</dt><dd>Direct; restant vervalt</dd><dt>Oefencash</dt><dd>{eur(snapshot.portfolio.cash)}</dd><dt>Beschermde reserve</dt><dd>{eur(snapshot.portfolio.reserve)}</dd><dt>Kostenmodel</dt><dd>0,16% · simulatie</dd><dt>Beschikbare liquiditeit</dt><dd>{num(quote.available_quantity)} {instrument.base}</dd></dl>
+ <div className="desktop-order"><button type="submit" className="primary full" disabled={busy||snapshot.source_paused||readOnly}>Trade Impact Preview <Icon name="arrow"/></button></div>
+ <p className="mobile-only warning-text">Mobiele leesmodus. Open de terminal op een groter scherm om een paperorder te beoordelen.</p>
+ {snapshot.source_paused&&<p role="alert" className="warning-box">Bron gepauzeerd. Nieuwe paperorders zijn geblokkeerd. Hervat de bron via Bronnen.</p>}
+ <div className="safety-note"><Icon name="shield"/><span>Alleen oefengeld. Geen live orders of transfers.</span></div>
+ </form>
+}
+export default function Terminal({snapshot,selected,onSelect,theme,interval,onInterval,onPreview,busy,ledger,onSource,initialTab='Orders'}:{snapshot:Snapshot;selected:string;onSelect:(s:string)=>void;theme:string;interval:string;onInterval:(s:string)=>void;onPreview:(i:OrderIntent)=>void;busy:boolean;ledger:Ledger|null;onSource:()=>void;initialTab?:string}){
+ const instrument=snapshot.instruments.find(i=>i.instrument_id===selected)??snapshot.instruments[0];const q=snapshot.quotes[instrument.instrument_id];
+ const [history,setHistory]=useState<History|null>(null);const [trades,setTrades]=useState<Trade[]>([]);const [error,setError]=useState('');
+ const [sma,setSma]=useState(true);const [tab,setTab]=useState(initialTab);const [inspector,setInspector]=useState('Order');const [drawer,setDrawer]=useState(false);
+ useEffect(()=>{let canceled=false;setHistory(null);setError('');Promise.all([api<History>(`/history?instrument_id=${encodeURIComponent(selected)}&interval=${interval}`),api<Trade[]>(`/trades?instrument_id=${encodeURIComponent(selected)}`)]).then(([h,t])=>{if(!canceled){setHistory(h);setTrades(t)}}).catch(e=>{if(!canceled)setError(String(e.message))});return()=>{canceled=true}},[selected,interval]);
+ useEffect(()=>setTab(initialTab),[initialTab]);
+ return <main className="terminal-grid">
+ <aside className="watchlist" aria-label="Watchlist"><div className="watch-title"><h2>Watchlist</h2><span>Spot / EUR</span></div><div className="watch-columns"><span>Instrument</span><span>Laatste prijs</span></div>
+ {snapshot.instruments.map(i=><button key={i.instrument_id} className={`watch-row ${selected===i.instrument_id?'selected':''}`} onClick={()=>onSelect(i.instrument_id)}><span><strong>{i.base}</strong><small>SIM · EUR</small></span><span className="mono">{eur(snapshot.quotes[i.instrument_id].last)}<small>Gesimuleerd</small></span></button>)}
+ <div className="watch-explainer"><Badge>DEMO</Badge><p>Drie synthetische markten. Elke prijs en elke trade is een lokale fixture.</p><button className="text-button" onClick={onSource}>Bron inspecteren <Icon name="arrow"/></button></div>
+ <div className="watch-footer"><span>Marktgegevens</span><b>Fixture v1</b><small>24 sep 2026 · 14:00</small></div></aside>
+ <section className="market-pane"><div className="instrument-bar"><div><div className="instrument-name"><span className="asset-symbol">{instrument.base.slice(0,1)}</span><h1>{instrument.symbol}</h1></div><button className="source-link" onClick={onSource}>SIMULATED · Last · bron bekijken</button></div><div className="main-price"><strong>{eur(q.last)}</strong><span>Fictieve referentiekoers</span></div><dl className="bid-ask"><dt>Bid</dt><dd>{eur(q.bid)}</dd><dt>Ask</dt><dd>{eur(q.ask)}</dd></dl></div>
+ <div className="mobile-selector"><label htmlFor="instrument-mobile">Instrument</label><select id="instrument-mobile" value={selected} onChange={e=>onSelect(e.target.value)}>{snapshot.instruments.map(i=><option key={i.instrument_id} value={i.instrument_id}>{i.symbol}</option>)}</select></div>
+ {snapshot.source_paused&&<div className="stale-banner" role="alert">STALE · Bron gepauzeerd. Oude fixture blijft zichtbaar; nieuwe orders zijn geblokkeerd.</div>}
+ <div className="chart-toolbar"><div className="timeframes" aria-label="Tijdsinterval">{['15m','1u','4u','1d'].map(v=><button key={v} aria-pressed={v===interval} className={v===interval?'selected':''} onClick={()=>onInterval(v)}>{v}</button>)}</div><label className="checkbox"><input type="checkbox" checked={sma} onChange={e=>setSma(e.target.checked)}/>SMA 20</label><button className="tablet-ticket secondary" onClick={()=>setDrawer(true)}>Orderticket</button></div>
+ <div className="chart-stage">{error?<Empty title="Historie niet beschikbaar">{error}</Empty>:history?<Suspense fallback={<p className="loading">Grafiek laden…</p>}><MarketChart history={history} theme={theme} sma={sma}/></Suspense>:<p className="loading" role="status">Historie laden…</p>}</div>
+ <div className="chart-caption"><span><i className="dot"/> Synthetische candles en volume · UTC-as</span><a href="https://www.tradingview.com/" target="_blank" rel="noreferrer">Lightweight Charts™ by TradingView</a></div>
+ <div className="tabs" aria-label="Marktcontext">{['Orders','Posities','Trades','Journaal','Koerstabel'].map(t=><button key={t} className={tab===t?'selected':''} aria-pressed={tab===t} onClick={()=>setTab(t)}>{t}{t==='Orders'&&snapshot.orders.length>0?<span className="count">{snapshot.orders.length}</span>:null}</button>)}</div>
+ <div className="lower-content">
+ {tab==='Orders'&&(snapshot.orders.length?<Table label="Paperorders" headers={['Order / instrument','Richting','Gevuld / gevraagd','Uitvoering','Kosten']}>
+ {snapshot.orders.map(o=><tr key={o.order_id}><td><b className="mono">{o.order_id}</b><small>{o.intent.instrument_id.replace('sim:','')} · {stamp(o.created_at)}</small></td><td>{o.intent.side==='BUY'?'Koop':'Verkoop'}</td><td>{num(o.fill_quantity)} / {num(o.intent.quantity)}</td><td><Badge tone={o.status==='FILLED'?'positive':'warning'}>{o.status}</Badge>{o.remaining_status==='CANCELED'&&<small>Restant vervallen (IOC)</small>}</td><td>{eur(o.fee)}</td></tr>)}</Table>:<Empty title="Je eerste paperorder begint met inzicht">Kies een instrument, controleer de bron en bekijk eerst de impact op cash en doelbuffer.</Empty>)}
+ {tab==='Posities'&&(snapshot.portfolio.positions.some(p=>Number(p.quantity)>0)?<Table label="Paperposities" headers={['Instrument','Aantal','Kostprijs totaal','Waarde','Ongerealiseerd']}>
+ {snapshot.portfolio.positions.filter(p=>Number(p.quantity)>0).map(p=><tr key={p.instrument_id}><td>{p.instrument_id.replace('sim:','')}</td><td>{num(p.quantity)}</td><td>{eur(p.cost)}</td><td>{eur(p.value)}</td><td>{eur(p.unrealized)}</td></tr>)}</Table>:<Empty title="Nog geen paperposities">Een uitgevoerde paperorder verschijnt hier en in het aparte oefenvermogen.</Empty>)}
+ {tab==='Trades'&&<Table label="Gesimuleerde trades" headers={['Tijd','Takerzijde','Prijs EUR','Aantal','Herkomst']}>{trades.map(t=><tr key={t.event_id}><td>{stamp(t.source_time)}</td><td className={t.taker_side==='BUY'?'positive':'negative'}>{t.taker_side}</td><td>{eur(t.price)}</td><td>{num(t.quantity)}</td><td>Synthetische fixture</td></tr>)}</Table>}
+ {tab==='Journaal'&&<Journal ledger={ledger}/>}
+ {tab==='Koerstabel'&&history&&<Table label="Toegankelijke koersgegevens" headers={['Tijd','Open','Hoog','Laag','Slot','SMA 20']}>{history.rows.slice(-20).reverse().map(r=><tr key={r.time}><td>{stamp(new Date(r.time*1000).toISOString())}</td><td>{eur(r.open)}</td><td>{eur(r.high)}</td><td>{eur(r.low)}</td><td>{eur(r.close)}</td><td>{r.sma20?eur(r.sma20):'Onvoldoende historie'}</td></tr>)}</Table>}
+ </div></section>
+ <aside className={`inspector ${drawer?'drawer-open':''}`} aria-label="Order en analyse"><div className="tabs">{['Assistent','Risico','Order'].map(t=><button key={t} className={inspector===t?'selected':''} onClick={()=>setInspector(t)}>{t}</button>)}<button className="tablet-ticket icon-button" aria-label="Orderpaneel sluiten" onClick={()=>setDrawer(false)}><Icon name="close"/></button></div>
+ {inspector==='Order'&&<Ticket key={selected} instrument={instrument} snapshot={snapshot} onPreview={onPreview} busy={busy}/>}
+ {inspector==='Risico'&&<div className="evidence"><h2>Vaste veiligheidsgrenzen</h2><dl className="facts"><dt>Modus</dt><dd>Paper · long-only</dd><dt>Max. orderwaarde</dt><dd>€ 25.000,00</dd><dt>Max. exposure</dt><dd>50% tegen kostprijs</dd><dt>Beschermde reserve</dt><dd>{eur(snapshot.portfolio.reserve)}</dd><dt>Tick / lot</dt><dd>{instrument.tick_size} / {instrument.lot_size}</dd><dt>Quote voor order</dt><dd>Actieve fixture vereist</dd><dt>Bevestiging</dt><dd>60 seconden geldig</dd></dl><p>Na een herstart controleert de server eerst cash en kostprijzen tegen het journaal.</p></div>}
+ {inspector==='Assistent'&&<div className="evidence"><h2>Inzicht bij je keuze</h2><Badge>LOKALE UITLEG · GEEN AI</Badge><section><h3>Feiten</h3><p>{instrument.symbol} gebruikt synthetische bid/ask-data. De bron is mtt-synthetic-v1.</p></section><section><h3>Berekeningen</h3><p>De preview rekent kosten, cash en doelbuffer exact uit. Geldberekeningen vinden op de server plaats.</p></section><section><h3>Interpretatie</h3><p>Een koop verruilt beschikbare oefencash voor marktrisico. De ingestelde reserve blijft beschermd.</p></section><section><h3>Onbekend</h3><p>Werkelijke marktprijs, externe liquiditeit en fiscale gevolgen zijn niet vastgesteld.</p></section><div className="warning-box">Codex: niet aangesloten.<br/>Jev: ABSTAIN, ontbrekende toegang.<br/>Privacy: LOCAL_ONLY.</div></div>}
+ </aside></main>
+}

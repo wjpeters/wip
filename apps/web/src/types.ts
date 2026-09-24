@@ -1,0 +1,13 @@
+export type {Quote, Identity, OrderIntent, JournalLine, Trade} from './generated';
+import type {Quote, Identity, OrderIntent, JournalLine} from './generated';
+export type Position = {instrument_id:string;quantity:string;cost:string;mark:string;value:string;unrealized:string;quality:string};
+export type Portfolio = {cash:string;reserve:string;buffer:string;total:string;fees:string;realized:string;revision:number;positions:Position[]};
+export type Plan = {reserve:string;monthly_in:string;monthly_out:string};
+export type Preview = {preview_id:string;intent:OrderIntent;quote:Quote;expires_at:string;status:string;fill_quantity:string;fill_price:string|null;notional:string;fee:string;remaining_quantity:string;remaining_status:string;cash_before:string;cash_after:string;position_before:string;position_after:string;buffer_before:string;buffer_after:string;reserve:string;reason:string;account_revision:number};
+export type Order = Omit<Preview,'quote'|'expires_at'> & {order_id:string;created_at:string;portfolio_after:Portfolio};
+export type Snapshot = {mode:string;instruments:Identity[];quotes:Record<string,Quote>;portfolio:Portfolio;orders:Order[];plan:Plan;source_paused:boolean;source_revision:number};
+export type HistoryRow = {time:number;open:string;high:string;low:string;close:string;volume:string;sma20:string|null};
+export type History = {instrument_id:string;interval:string;quality:string;rows:HistoryRow[]};
+export type Wealth = Portfolio & {cash_path:{month:number;cash:string;reserve:string;buffer:string}[];history:{label:string;value:string}[];assumptions:Plan};
+export type Ledger = {revision:number;lines:JournalLine[];count:number;balanced:boolean;offset:number};
+export type Source = {id:string;name:string;capabilities:string[];status:string;verification:string;origin_feed:string;coverage:string;license:string;last_message:string|null;latency?:string;credentials?:string;mapping?:Identity[]};

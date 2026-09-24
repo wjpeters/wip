@@ -1,0 +1,29 @@
+{
+  "verified_at": "2026-09-24",
+  "images": [
+    {
+      "name": "wpos-mtt-web:0.2.0",
+      "id": "sha256:33d7bbf7968464b010c33fd6ae2fb144b32c418b9c42432c9854121617f33ea0",
+      "architecture": "arm64",
+      "os": "linux",
+      "repo_digests": []
+    },
+    {
+      "name": "wpos-mtt-api:0.2.0",
+      "id": "sha256:24c507eccd74cd1e192689ef8928e46b26e843d793257767e5bf128815ec8ca9",
+      "architecture": "arm64",
+      "os": "linux",
+      "repo_digests": []
+    },
+    {
+      "name": "postgres:17.6-alpine",
+      "id": "sha256:29e645e20571728f22df398b9954bb6c1cefec390d99ed4e26308fc2f52d6a37",
+      "architecture": "arm64",
+      "os": "linux",
+      "repo_digests": [
+        "postgres@sha256:ef257d85f76e48da1c64832459b59fcaba1a4dac97bf5d7450c77753542eee94"
+      ]
+    }
+  ],
+  "base_digests": "See pinned FROM lines in both Dockerfiles and postgres image in compose.yaml"
+}
