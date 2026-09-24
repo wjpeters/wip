@@ -1,0 +1,30 @@
+# Optional profile. Disabled model calls remain disabled even when this service runs.
+services:
+  api:
+    environment:
+      AI_BRIDGE_URL: http://assistant:8090
+    secrets: [assistant_token]
+    networks: [assistant-internal]
+  assistant:
+    image: wpos-mtt-assistant:0.5.0
+    build: ../../services/assistant
+    profiles: [ai]
+    secrets: [assistant_token, ai_config]
+    read_only: true
+    tmpfs: [/tmp]
+    volumes: [mtt-ai-state:/home/node/.codex]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 768m
+    cpus: 1.0
+    networks: [assistant-internal, ai-egress]
+    healthcheck: {test: [CMD, node, -e, "fetch('http://127.0.0.1:8090/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"], interval: 10s, timeout: 3s, retries: 10}
+    restart: unless-stopped
+networks:
+  assistant-internal: {internal: true}
+  ai-egress: {}
+volumes:
+  mtt-ai-state: {}
+secrets:
+  assistant_token: {file: ../../.secrets/assistant_token}
+  ai_config: {file: ../../.secrets/ai_config.json}

@@ -1,7 +1,7 @@
 name: wpos-mtt
 services:
   web:
-    image: wpos-mtt-web:0.2.0
+    image: wpos-mtt-web:0.5.0
     build: ../../apps/web
     ports: ["127.0.0.1:${WEB_PORT:-4186}:8080"]
     depends_on: {api: {condition: service_healthy}}
@@ -15,10 +15,10 @@ services:
     networks: [edge, frontend]
     restart: unless-stopped
   api:
-    image: wpos-mtt-api:0.2.0
+    image: wpos-mtt-api:0.5.0
     build: ../../services/api
     environment: {WEB_PORT: "${WEB_PORT:-4186}"}
-    secrets: [db_password]
+    secrets: [db_password, vault_key]
     depends_on: {postgres: {condition: service_healthy}}
     read_only: true
     tmpfs: [/tmp]
@@ -28,6 +28,19 @@ services:
     cpus: 2.0
     healthcheck: {test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"], interval: 5s, timeout: 3s, retries: 20}
     networks: [frontend, database]
+    restart: unless-stopped
+  worker:
+    image: wpos-mtt-api:0.5.0
+    command: [python, -m, app.worker]
+    secrets: [db_password]
+    depends_on: {api: {condition: service_healthy}}
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 512m
+    cpus: 1.0
+    networks: [database, source-fetch]
     restart: unless-stopped
   postgres:
     image: postgres:17.6-alpine@sha256:ef257d85f76e48da1c64832459b59fcaba1a4dac97bf5d7450c77753542eee94
@@ -42,8 +55,10 @@ services:
     restart: unless-stopped
 networks:
   edge: {}
+  source-fetch: {}
   frontend: {internal: true}
   database: {internal: true}
 volumes: {mtt-data: {}}
 secrets:
   db_password: {file: ../../.secrets/db_password}
+  vault_key: {file: ../../.secrets/vault_key}

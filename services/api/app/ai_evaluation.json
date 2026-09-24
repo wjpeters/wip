@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "model_version": "SYNTHETIC_FIXTURE_NOT_A_MODEL",
+  "dataset_hash": "827e06fdfb0c4fb86fa4346790d3439e40c92e3f936216ebf768d955cef65382",
+  "tasks": {
+    "news_kind": {
+      "total": 4,
+      "scored": 4,
+      "abstained": 0,
+      "invalid": 0,
+      "correct": 4,
+      "absolute_error": 0,
+      "coverage": 1,
+      "accuracy": 1,
+      "mean_absolute_error": null
+    },
+    "source_support": {
+      "total": 2,
+      "scored": 2,
+      "abstained": 0,
+      "invalid": 0,
+      "correct": 0,
+      "absolute_error": 0,
+      "coverage": 1,
+      "accuracy": null,
+      "mean_absolute_error": 0
+    },
+    "relevance": {
+      "total": 3,
+      "scored": 3,
+      "abstained": 0,
+      "invalid": 0,
+      "correct": 0,
+      "absolute_error": 0,
+      "coverage": 1,
+      "accuracy": null,
+      "mean_absolute_error": 0
+    }
+  },
+  "unknown_predictions": 0,
+  "promotion": "MANUAL_REVIEW_REQUIRED",
+  "trade_permission": false,
+  "quality": "SYNTHETIC_TEST_OUTPUT_NOT_MODEL_QUALITY",
+  "note": "Softwarecontrole van de evaluatiepijplijn. Echte modelkwaliteit en drift zijn niet gemeten zonder provider."
+}

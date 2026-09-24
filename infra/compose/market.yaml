@@ -1,0 +1,26 @@
+services:
+  api:
+    environment:
+      MARKET_BRIDGE_URL: http://market:8091
+    secrets: [market_token]
+    networks: [market-internal]
+  market:
+    image: wpos-mtt-api:0.5.0
+    command: [python, -m, uvicorn, app.market_service:app, --host, 0.0.0.0, --port, "8091", --no-access-log]
+    profiles: [market]
+    secrets: [providers, market_token]
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 512m
+    cpus: 1.0
+    networks: [market-internal, market-egress]
+    restart: unless-stopped
+    healthcheck: {test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8091/health')"], interval: 5s, timeout: 3s, retries: 20}
+networks:
+  market-internal: {internal: true}
+  market-egress: {}
+secrets:
+  market_token: {file: ../../.secrets/market_token}
+  providers: {file: ../../.secrets/providers.json}

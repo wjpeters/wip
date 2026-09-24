@@ -38,7 +38,7 @@ test('complete paperworkflow, bronnen, preview, ledger en plan',async({page},inf
  await page.getByRole('button',{name:'Melding sluiten'}).click();
  await page.getByRole('button',{name:'Vermogen',exact:true}).click();await expect(page.getByRole('heading',{name:'Je oefenvermogen'})).toBeVisible();
  await expect(page.getByRole('region',{name:'Rekeningen en posities'})).toContainText('BTC-EUR');await screen(page,'vermogen',info.project.name);
- await page.getByRole('button',{name:'Planning',exact:true}).click();const reserve=page.getByLabel('Doelreserve (EUR)',{exact:true});await reserve.fill((await reserve.inputValue())==='25000.00'?'26000.00':'25000.00');
+ await page.getByRole('button',{name:'Planning',exact:true}).click();await page.getByRole('button',{name:'Paperplan',exact:true}).click();const reserve=page.getByLabel('Doelreserve (EUR)',{exact:true});await reserve.fill((await reserve.inputValue())==='25000.00'?'26000.00':'25000.00');
  await page.getByRole('button',{name:'Oefenplan opslaan'}).click();await expect(page.getByText('Oefenplan opgeslagen.',{exact:true})).toBeVisible();
  await screen(page,'planning',info.project.name);
  await page.getByRole('button',{name:'Bronnen',exact:true}).click();await expect(page.getByRole('region',{name:'Bronstatus'})).toContainText('NOT_RUN_EXTERNAL_NETWORK');
@@ -47,7 +47,7 @@ test('complete paperworkflow, bronnen, preview, ledger en plan',async({page},inf
  await page.getByRole('button',{name:'Terminal',exact:true}).click();await expect(page.getByRole('button',{name:'Trade Impact Preview',exact:false})).toBeDisabled();await expect(page.locator('.stale-banner')).toBeVisible();
  await screen(page,'storing',info.project.name);
  await page.getByRole('button',{name:'Bron inspecteren',exact:false}).click();await page.getByRole('button',{name:'Bron hervatten'}).click();
- await page.getByRole('button',{name:'Assistent',exact:true}).click();await expect(page.getByText('LOKALE UITLEG · GEEN AI')).toBeVisible();await screen(page,'uitleg',info.project.name);
+ await page.getByRole('complementary',{name:'Order en analyse'}).getByRole('button',{name:'Assistent',exact:true}).click();await expect(page.getByText('LOKALE UITLEG · GEEN AI')).toBeVisible();await screen(page,'uitleg',info.project.name);
  await page.getByRole('button',{name:'Order',exact:true}).click();
  await page.keyboard.press('Control+k');await expect(page.getByRole('dialog')).toBeVisible();await page.getByRole('textbox',{name:'Zoeken',exact:true}).fill('ETH');
  await page.getByRole('dialog').getByRole('button',{name:/ETH\/EUR/}).click();await expect(page.getByRole('heading',{name:'ETH/EUR',exact:true}).first()).toBeVisible();

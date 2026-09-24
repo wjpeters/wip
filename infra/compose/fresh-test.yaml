@@ -1,0 +1,4 @@
+# Disposable test storage. Choose a NEW name for each first-install verification.
+volumes:
+  mtt-data:
+    name: ${MTT_FRESH_VOLUME:-wpos-mtt-fresh05b_mtt-data}

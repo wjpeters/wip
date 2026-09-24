@@ -1,0 +1,7 @@
+{
+ "enabled": false,
+ "kraken": {"enabled": false, "display_rights_confirmed": false},
+ "coinbase": {"enabled": false, "display_rights_confirmed": false},
+ "alpaca": {"enabled": false, "display_rights_confirmed": false, "feed": "iex", "entitlements": [], "key": "", "secret": ""},
+ "sec": {"user_agent_contact": ""}
+}

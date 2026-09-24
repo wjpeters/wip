@@ -1,5 +1,6 @@
 import {useEffect,useState} from 'react';
 import {api} from '../api';
+import ProviderPanel from './ProviderPanel';
 import type {Source} from '../types';
 import {Badge,Dialog,Table,stamp} from './components';
 export function SourceDetails({source,paused,onPause,onClose}:{source:Source;paused:boolean;onPause:(paused:boolean)=>Promise<void>;onClose:()=>void}){
@@ -17,6 +18,7 @@ export default function Sources({paused,onPause,onInspect}:{paused:boolean;onPau
  <div className="filter-bar"><label htmlFor="source-filter">Zoek bron</label><input id="source-filter" placeholder="Naam of capability…" value={filter} onChange={e=>setFilter(e.target.value)}/><span>Geen betaalde diensten actief</span></div>{error&&<p role="alert">{error}</p>}
  <Table label="Bronstatus" headers={['Bron','Capabilities','Herkomst','Verificatie','Status','Details']}>
  {sources.filter(s=>(s.name+' '+s.capabilities.join(' ')).toLowerCase().includes(filter.toLowerCase())).map(s=><tr key={s.id}><td><b>{s.name}</b><small>{s.id}</small></td><td>{s.capabilities.join(' · ')}</td><td>{s.origin_feed}</td><td className="mono wrap">{s.verification}</td><td><Badge tone={s.status==='ACTIVE_SIMULATED'?'positive':'warning'}>{s.status}</Badge></td><td><button className="secondary" onClick={()=>{setSelected(s);onInspect()}} aria-label={`Inspecteer ${s.name}`}>Inspecteren</button></td></tr>)}
- </Table><div className="source-notes"><section><h2>Fixture ≠ live verbinding</h2><p>De demo is volledig lokaal. Kraken heeft een getest parsercontract en een read-only probe; de echte netwerkproef is niet uitgevoerd. Publieke marktdata en private accounttoegang zijn aparte rechten.</p></section><section><h2>AI is afzonderlijk aangesloten</h2><p>Codex ondersteunt straks onderzoek en uitleg. Jev krijgt kleine beoordelingsvragen. Geen van beide kan geld boeken, belastingregels wijzigen of orders uitvoeren.</p></section><section><h2>Geen impliciete failover</h2><p>Een onbekende of gepauzeerde bron wordt zichtbaar gemarkeerd. Gesimuleerde data wordt nooit als vervangende live koers gepresenteerd.</p></section></div>
+ </Table><div className="source-notes"><section><h2>Fixture ≠ live verbinding</h2><p>De demo is volledig lokaal. Kraken heeft een getest parsercontract en een read-only probe; de echte netwerkproef is niet uitgevoerd. Publieke marktdata en private accounttoegang zijn aparte rechten.</p></section><section><h2>AI is afzonderlijk aangesloten</h2><p>De werkruimte Assistent biedt Codex voor onderzoek en Jev voor kleine beoordelingsvragen, na lokale providerconfiguratie en een expliciete gegevenscontrole. Geen van beide kan geld boeken, belastingregels wijzigen of orders uitvoeren.</p></section><section><h2>Geen impliciete failover</h2><p>Een onbekende of gepauzeerde bron wordt zichtbaar gemarkeerd. Gesimuleerde data wordt nooit als vervangende live koers gepresenteerd.</p></section></div>
+ <ProviderPanel/>
  {selected&&<SourceDetails source={selected} paused={paused} onPause={onPause} onClose={()=>setSelected(null)}/>}</main>
 }

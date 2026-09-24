@@ -13,6 +13,11 @@ import psycopg
 from psycopg.types.json import Jsonb
 from fastapi import FastAPI, HTTPException, Request, Response
 from pydantic import BaseModel, ConfigDict, Field
+from .market_routes import router as market_router
+from .accounting_routes import router as accounting_router
+from .planning_routes import router as planning_router
+from .ai_routes import router as ai_router
+from .calendar import router as calendar_router
 from .contracts import OrderIntent, JournalLine, DecimalString
 from .finance import calculate, initial_state, portfolio, cash_path, PolicyError
 from .market import (
@@ -121,12 +126,16 @@ def migrate():
 @asynccontextmanager
 async def lifespan(app):
     migrate()
+    from .storage import migrate_extended
+
+    with db() as c:
+        migrate_extended(c)
     yield
 
 
 app = FastAPI(
     title="Modern Trade Terminal",
-    version="0.2.0",
+    version="0.5.0",
     lifespan=lifespan,
     docs_url=None,
     redoc_url=None,
@@ -335,7 +344,9 @@ def get_history(request: Request, instrument_id: str, interval: str = "1u"):
     if instrument_id not in INSTRUMENTS:
         raise HTTPException(404, "UNKNOWN_INSTRUMENT")
     try:
-        return history(instrument_id, interval)
+        from .indicators import enrich
+
+        return enrich(history(instrument_id, interval))
     except ValueError as e:
         raise HTTPException(422, str(e))
 
@@ -649,3 +660,18 @@ def get_audit(request: Request):
         {"action": r[0], "reference": r[1], "created_at": r[2].isoformat()}
         for r in rows
     ]
+
+
+app.include_router(market_router(lambda: db(), session, audit))
+
+
+app.include_router(accounting_router(lambda: db(), session, audit))
+
+
+app.include_router(planning_router(lambda: db(), session, audit))
+
+
+app.include_router(ai_router(lambda: db(), session, audit))
+
+
+app.include_router(calendar_router(lambda: db(), session, audit))

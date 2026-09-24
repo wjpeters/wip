@@ -15,6 +15,7 @@ py = [
 rs = [
     "// GENERATED. Decimal strings are never converted to floats.",
     "use serde::{Serialize, Deserialize};",
+    "pub mod api;",
 ]
 for name, schema in schemas.items():
     ts.append(f"export type {name} = {{")

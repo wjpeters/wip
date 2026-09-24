@@ -1,0 +1,10 @@
+{
+  "enabled": false,
+  "codex_key": "",
+  "codex_model": "",
+  "jev_key": "",
+  "jev_model": "",
+  "max_requests_per_day": 0,
+  "max_daily_microusd": 0,
+  "reserve_per_request_microusd": 0
+}

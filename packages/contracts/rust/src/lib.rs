@@ -1,5 +1,6 @@
 // GENERATED. Decimal strings are never converted to floats.
 use serde::{Serialize, Deserialize};
+pub mod api;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub enum IdentitySchemaVersion {
     #[serde(rename = "1")] V0,

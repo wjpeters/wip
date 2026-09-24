@@ -1,0 +1,50 @@
+{
+  "model": "SYNTHETIC_FIXTURE_NOT_A_MODEL",
+  "predictions": [
+    {
+      "id": "fixture-1",
+      "model": "SYNTHETIC_FIXTURE_NOT_A_MODEL",
+      "value": "MACRO"
+    },
+    {
+      "id": "fixture-2",
+      "model": "SYNTHETIC_FIXTURE_NOT_A_MODEL",
+      "value": "EARNINGS"
+    },
+    {
+      "id": "fixture-3",
+      "model": "SYNTHETIC_FIXTURE_NOT_A_MODEL",
+      "value": "TECHNOLOGY"
+    },
+    {
+      "id": "fixture-4",
+      "model": "SYNTHETIC_FIXTURE_NOT_A_MODEL",
+      "value": "OTHER"
+    },
+    {
+      "id": "fixture-5",
+      "model": "SYNTHETIC_FIXTURE_NOT_A_MODEL",
+      "value": 1
+    },
+    {
+      "id": "fixture-6",
+      "model": "SYNTHETIC_FIXTURE_NOT_A_MODEL",
+      "value": 0
+    },
+    {
+      "id": "fixture-7",
+      "model": "SYNTHETIC_FIXTURE_NOT_A_MODEL",
+      "value": 2
+    },
+    {
+      "id": "fixture-8",
+      "model": "SYNTHETIC_FIXTURE_NOT_A_MODEL",
+      "value": 0
+    },
+    {
+      "id": "fixture-9",
+      "model": "SYNTHETIC_FIXTURE_NOT_A_MODEL",
+      "value": 1
+    }
+  ]
+}

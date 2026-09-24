@@ -1,0 +1,16 @@
+{
+  "codex_cli": "0.141.0",
+  "source": "Local installed official codex app-server generate-json-schema / generate-ts --experimental",
+  "generated_at": "2026-09-24",
+  "schema_hashes": {
+    "TurnStartParams.json": "33a2c06673c643836e1c4ad4c1500297a11d6b41049ed0a5e5e5086cc789863b",
+    "ThreadStartParams.json": "939931e81a0154aa30b307bc98955c23fa9e863ddccf0c6bdf08d32214b299c6",
+    "ThreadResumeParams.json": "f7683c5cee3e8c91c7b87acdc4373d9560ac6810f8e062b47e8346818190babf",
+    "GetAccountParams.json": "d0dc3c0d428d37b1ec7887fa6b044244e6474578e1ff397c0872b2a6292073db",
+    "DynamicToolCallResponse.json": "50410ccaaefc9871a42fa25ee0c0d4f488a6f0e08c35856842e12d3103410fd1",
+    "InitializeParams.json": "f6540330c6492971750ad0caa532904eb08547bd8d849a053aecf36c803c49f7",
+    "DynamicToolCallParams.json": "e36242b331ca665c74993e55abbea381b1c8a961b29a42579029cff1ad26b20d",
+    "TurnInterruptParams.json": "49132b57b09f09dc545ed1cd373c12eede6e880e9afb54ae50add78bb42490cd",
+    "LoginAccountParams.json": "313e7a39222f0d19dd6f3177722e2d82aa80578e378e7697436efcd4e58fde06"
+  }
+}
