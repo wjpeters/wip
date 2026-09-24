@@ -1,0 +1,81 @@
+[
+  {
+    "command": [
+      "rtk",
+      "proxy",
+      ".venv/bin/ruff",
+      "check",
+      "services/api/app",
+      "services/api/tests",
+      "scripts"
+    ],
+    "exit_code": 0,
+    "output": "release-check-1.txt"
+  },
+  {
+    "command": [
+      "rtk",
+      "proxy",
+      "npm",
+      "--prefix",
+      "apps/web",
+      "run",
+      "lint"
+    ],
+    "exit_code": 0,
+    "output": "release-check-2.txt"
+  },
+  {
+    "command": [
+      "rtk",
+      "proxy",
+      "cargo",
+      "check",
+      "--locked",
+      "--manifest-path",
+      "packages/contracts/rust/Cargo.toml"
+    ],
+    "exit_code": 0,
+    "output": "release-check-3.txt"
+  },
+  {
+    "command": [
+      "rtk",
+      "proxy",
+      "docker",
+      "compose",
+      "-p",
+      "wpos-mtt-qa",
+      "-f",
+      "infra/compose/compose.yaml",
+      "exec",
+      "-T",
+      "api",
+      "python",
+      "-m",
+      "pytest",
+      "tests",
+      "-q",
+      "-p",
+      "no:cacheprovider"
+    ],
+    "exit_code": 0,
+    "output": "release-check-4.txt"
+  },
+  {
+    "command": [
+      "rtk",
+      "proxy",
+      "docker",
+      "run",
+      "--rm",
+      "--network",
+      "none",
+      "wpos-mtt-assistant:0.5.0",
+      "npm",
+      "test"
+    ],
+    "exit_code": 0,
+    "output": "release-check-5.txt"
+  }
+]

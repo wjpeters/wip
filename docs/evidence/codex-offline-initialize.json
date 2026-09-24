@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "protocol": "0.141.0",
+  "transport": "stdio",
+  "network": "none",
+  "model_call": false,
+  "scope": "Real pinned CLI initialize; auth/thread/model not tested"
+}

@@ -1,0 +1,32 @@
+{
+  "quality": "SYNTHETIC_ENGINEERING_NOT_LIVE",
+  "canceled": false,
+  "duration_ms": 70161,
+  "instruments": 200,
+  "visible_charts": 4,
+  "selected_books": 20,
+  "load": "5000 events/s for 60s; 20000 events/s for 10s",
+  "mix": "90% quote/trade display samples; 10% contiguous book updates",
+  "accepted": 500000,
+  "expected": 500000,
+  "book_updates_applied": 50000,
+  "sequence_gaps": 0,
+  "display_coalesced": 98185,
+  "rendered_samples": 401815,
+  "unaccounted": 0,
+  "average_message_bytes": 105,
+  "local_receive_to_paint_ms": {
+    "p50": 25.7,
+    "p95": 33.1,
+    "p99": 34.1
+  },
+  "flush_ms": {
+    "p50": 0.1,
+    "p95": 0.2,
+    "p99": 0.2
+  },
+  "long_tasks_over_50ms": 0,
+  "target_p95_under_150ms": true,
+  "scope": "Local normalization/display harness using the shipped chart library; excludes provider/network latency and financial HTTP operations.",
+  "browser": "chromium"
+}

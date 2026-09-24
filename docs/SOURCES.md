@@ -73,3 +73,17 @@ Geen enkele bron in deze tabel verleent automatisch rechten om alle gegevens op 
 Begin met Belastingdienst, Rijksoverheid, Officiële Bekendmakingen, wetten.overheid.nl en de relevante parlementaire dossiers. Sla bron, inhoudshash, ophaaltijd, geldigheidsperiode, ingangsdatum, juridische status en kennisdatum op. Een persbericht, politieke aankondiging, wetsvoorstel en in werking getreden regeling zijn niet hetzelfde.
 
 Laat automatische detectie een wijzigingsvoorstel aanmaken, nooit zelfstandig productiebelastingregels activeren. Vereis rekenfixtures, regressietests, een impactvergelijking en een expliciete review. De persoon die goedkeurt moet bij materiële fiscale/juridische keuzes kunnen terugvallen op een bevoegde adviseur. Bij conflicten of ontbrekende wetstekst blijft de status onbevestigd.
+
+
+## Verificatie bij release 0.5.0 · 24 september 2026
+
+Deze aanvulling verandert geen licentierechten. Publieke documentatie is gelezen; echte account/market/modeltests zijn apart gemarkeerd in STATUS.
+
+- [Coinbase Advanced Trade AsyncAPI](https://docs.cdp.coinbase.com/api-reference/advanced-trade-api/advanced-trade-asyncapi.json): subscribe, heartbeat, level2/l2_data en verbindinggebonden sequence. Maker-side vereist omkering naar agressor-side.
+- [Alpaca real-time stock data](https://docs.alpaca.markets/us/docs/real-time-stock-pricing-data): IEX/SIP/delayed, quote/trade/correction/cancel, bars/updatedBars. Feedrecht wordt niet uit een abonnement afgeleid.
+- [SEC EDGAR APIs](https://www.sec.gov/search-filings/edgar-application-programming-interfaces): companyfacts, User-Agent, filed-tijd en revisies; fixtureparser, geen geactiveerde fundamentalsfeed.
+- [OpenAI App Server](https://learn.chatgpt.com/docs/app-server): stdio-bridge. Geïnstalleerde CLI 0.141.0 levert de daadwerkelijk gepinde JSON Schema/TypeScript-contracten; offline initialize bewezen.
+- [TypeSafe API](https://docs.typesafe.ai/api): HTTP System One, choice/noul/score, versie en usage. Modelkwaliteit niet gemeten; tests gebruiken synthetische responsen.
+- [Erfbelastingtarieven 2025](https://www.belastingdienst.nl/wps/wcm/connect/nl/erfbelasting/content/tarieven-erfbelasting-2025): toegankelijke officiële tarievenpagina vervangt een PDF-endpoint dat in de lokale controle HTTPStatusError gaf. De mislukte controle blijft bewaard.
+
+De twaalf actuele fiscale allowlistbronnen en hun hashes staan in `evidence/source-check.json`; eerste fouttoestand in `evidence/source-check-initial.json`. Alle twaalf zijn vervolgens succesvol opgehaald, zonder regels automatisch goed te keuren. Bronstatus blijft NEEDS_HUMAN_REVIEW. Raadpleeg TAX_SCOPE voor de toegestane situaties, geen algemene fiscale claim.

@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "project": "wpos-mtt-qa",
+  "encrypted_sha256": "20130a3fc223908a5c016e22c2d8b37053cd038a8fd861bb2f87ed0711a8fcd0",
+  "ledger_balanced": true,
+  "vault_documents_decrypted_and_verified": 7,
+  "vault_key_in_encrypted_bundle": true,
+  "cash_reconciled": true,
+  "restored_hashes": {
+    "account": "aeb99fa6ac80b468e74a4f8fb96f7109da5e44f0b425a7700376a77eb15a9760",
+    "analysis_jobs": "d61143abeb05ec02904db32c93c45ea52652621a9fbe812acba5f4856f5424ab",
+    "audit": "a2429cdf03112d6e98b00ca68245346a6e80bd4960dd02c230fec223f75d3601",
+    "domain_state": "72f0f743fd7ca7db00d9ad54f020b32f1c9413ee85ee8a67eecfeb4635981802",
+    "ledger": "fc01433640f319b7949e82d2e80dcd1bd435a81d43a8a4c86793b1fc6f22817d",
+    "orders": "81eca7880fcb5d1643c6cf7cade4b52a33350d656009355016a2fcfdbba499b5",
+    "previews": "2eade0c9cca4af0ac9e8133a74f9c78bdcc1ae149f5f1748ee37e9a317fa3a31",
+    "sessions": "49b1dddbaf80a8c4040240c0ab3baa4dfebddacd3cc9eb8f9cb9180d2bedb673",
+    "users": "20f399dd5df979e0c0a99d3942a31643e4de94db554dce1d3e396ba8a819b8c5",
+    "vault": "95b6de87d73f8bc16ca98a20f99be11a4ff83498fae13a8a05d3ea0080dabac8"
+  },
+  "matches_current_source": true,
+  "temporary_database_removed": true,
+  "backup_file": "/Users/wp/WPOS-local/projects/modern-trade-terminal/backups/wpos-mtt-qa-20260924T173329415897Z.fernet",
+  "corrupt_ciphertext_rejected": true
+}

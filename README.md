@@ -1,47 +1,42 @@
-# Modern Trade Terminal · lokale M0/M1-release
+# Modern Trade Terminal · 0.5.0
 
-Een werkende paperworkflow: **instrument → grafiek → broncontrole → Trade Impact Preview → paperorder → journaal → oefenvermogen → planbuffer**.
+Lokale applicatie voor marktonderzoek, paper trading, financiële administratie en Nederlandse vermogensplanning. De M0–M5-workflows zijn gebouwd voor de hieronder beschreven demo/read-only-scope. Externe aansluitingen worden door de eigenaar na oplevering geconfigureerd en geverifieerd.
 
-De applicatie staat buiten iCloud: `/Users/wp/WPOS-local/projects/modern-trade-terminal`. Alleen de projectverwijzing staat in WPOS. Geen cloud-AI, live orders, abonnementen of echte rekeninggegevens. De eerdere Downloads-installatie is behouden.
+[Open de applicatie](http://localhost:4186). Het bestaande account en de paperhistorie blijven behouden. Bij een nieuwe installatie kies je zelf een wachtwoord. Geen standaardwachtwoord.
 
-## Openen
+Project: `/Users/wp/WPOS-local/projects/modern-trade-terminal`, **buiten iCloud**. Alleen de verwijzing staat in WPOS. Dubbelklik `Start Modern Trade Terminal.command` om te starten; Docker Desktop moet draaien.
 
-[Open de applicatie](http://localhost:4186). Kies bij de eerste opening zelf een lokaal wachtwoord van minimaal 12 tekens. Er is geen standaardwachtwoord. Het startsaldo van € 100.000 en alle koersen zijn fictief.
+## Van bron naar beslissing
 
-Voor volgende starts: dubbelklik **Start Modern Trade Terminal.command**. Docker Desktop moet draaien; Python 3 en RTK moeten beschikbaar zijn. De eerste build haalt publieke pakketten en containerimages op. De draaiende app heeft geen externe API nodig.
+- **Markten → Terminal**: instrument, bronvergelijking, nieuws/kalender, L2 en tape; vier gekoppelde grafieken, indicatoren, opgeslagen paneelindeling en een apart grafiekvenster. Drie synthetische crypto-EUR-markten hebben paperorders. Aandelen/ETF/FX-metadata krijgt geen fictieve livekoers.
+- **Administratie**: privé/holding/werk-BV, eigendomspercentages, CSV/CAMT-import met preview, classificatie en bevestiging, dubbel journaal, correcties, waarderingen, FX en performance. DEMO en PERSONAL zijn gescheiden; PERSONAL begint leeg.
+- **Planning**: doelen, maandcashflow, basis/stress, Monte Carlo, bewaarde scenario's en vergelijking. Handelsimpact is gebonden aan eigenaar, rekening en administratieversie. Geblokkeerd pensioen en belastingreserve blijven herkenbaar.
+- **Fiscaliteit en pensioen**: deterministische calculators voor afgebakende Nederlandse situaties in **2025**. Conceptstatus, bronversies, officiële voorbeeldtests en menselijke rule-review. Geen volledige aangifte of automatische regelgoedkeuring.
+- **Nalatenschap en documenten**: eenvoudige verdelingsscenario's met review bij juridische complexiteit; lokale versleutelde documentkluis met versies en downloads.
+- **Assistent**: lokale uitleg zonder AI; optionele Codex- en Jev-adapters met expliciete gegevenspreview, beperkte rechten, budgetten en ABSTAIN. Geen actieve modelverbinding bij oplevering.
+- **Lab**: replay zonder vooruitkijken, backtest met uitvoering op volgende opening, kosten/slippage en handleiding voor volledige workflows.
 
-Handmatig, vanuit deze projectmap:
+De papercash van €100.000 is oefengeld. Demo-imports en scenario's zijn geen persoonlijke feiten. Mobiele terminal is leesmodus. Licht/donker, toetsenbord en bronkwaliteit horen bij de werkruimte.
+
+## Starten en stoppen
 
 ```sh
 rtk proxy python3 scripts/setup-local.py
 rtk proxy docker compose -f infra/compose/compose.yaml up --build -d --wait
-```
-
-Stop zonder data te wissen:
-
-```sh
 rtk proxy docker compose -f infra/compose/compose.yaml stop
 ```
 
-## Gebruik
+Gebruik nooit `down -v` op de gebruikersomgeving. De standaardinstallatie activeert geen marktprovider, model, abonnement of liveorder.
 
-1. Kies BTC, ETH of SOL. Controleer het label **SIMULATED** en de bron.
-2. Bekijk candles, volume, SMA 20 en de koerstabel. Ctrl/Cmd+K zoekt instrumenten en schermen.
-3. Vul een hoeveelheid en limiet in. De preview toont exacte kosten, cash, positie en doelbuffer vóór en na uitvoering.
-4. Bevestig binnen 60 seconden. De limietorder voert het direct beschikbare deel uit; het restant vervalt (IOC). Dubbele verzending maakt geen dubbele order.
-5. Bekijk dezelfde mutatie in Journaal, Vermogen en Planning. Pas daar de oefenreserve en maandelijkse kasstromen aan.
-6. Pauzeer de fixture in Bronnen om de storingstoestand te oefenen. Nieuwe orders worden dan geblokkeerd.
+## Oplevering
 
-Op mobiel is de terminal een leesomgeving; orderinvoer is uitgeschakeld. De tutorial staat in Lab. Light/dark en de laatste instrument-/schermkeuze worden lokaal bewaard.
+- [Gebouwd, getest en ontbrekende toegang](STATUS.md)
+- [M2–M5 bewijs en acceptatiematrix](docs/evidence/M2-M5.md)
+- [Gebruikershandleiding](docs/runbooks/USER_GUIDE.md)
+- [Installatie en tests](docs/runbooks/INSTALLATION.md)
+- [Provider- en AI-configuratie](docs/runbooks/PROVIDERS.md)
+- [Fiscale scope](docs/runbooks/TAX_SCOPE.md)
+- [Back-up en herstel](docs/runbooks/BACKUP_RESTORE.md)
+- [Privacy](docs/runbooks/PRIVACY.md)
 
-## Scope en bewijs
-
-[STATUS.md](STATUS.md) scheidt gebouwd, getest, ontbrekende toegang en niet gebouwde onderdelen. M0 en de demo/paperdoorsnede van M1 zijn geleverd. **Dit is niet de volledige M2–M5 finance-assistent uit het bredere bouwplan.** AI-runtime, imports, belasting- en pensioenrekenwerk en extra marktdekking zijn niet als werkend voorgesteld.
-
-- [M0-besluiten](docs/evidence/M0.md)
-- [M1-tests en browserbeelden](docs/evidence/M1.md)
-- [Providercontracten en aansluiten](docs/runbooks/PROVIDERS.md)
-- [Installeren en testen](docs/runbooks/INSTALLATION.md)
-- [Versleutelde back-up en herstel](docs/runbooks/BACKUP_RESTORE.md)
-- [Privacy en veiligheidsgrenzen](docs/runbooks/PRIVACY.md)
-- [Ontwerp en vergelijking met referenties](docs/design/fidelity-log.md)
+M6 live-executie en M7 derivaten vallen buiten deze oplevering. Geen claim van wereldwijde realtime-data, fiscaal gecertificeerde software of gegarandeerd rendement.

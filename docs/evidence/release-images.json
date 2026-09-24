@@ -1,0 +1,17 @@
+{
+  "wpos-mtt-web:0.5.0": {
+    "id": "sha256:1af4e60df43ee030bb942252ac8d82f0472d032715eb31e7e9bddbc4ae05a25f",
+    "architecture": "arm64",
+    "created": "2026-09-24T17:26:01.937910177Z"
+  },
+  "wpos-mtt-api:0.5.0": {
+    "id": "sha256:f76c18c1953f152a8915b032757de72500cfb57b1af8159fc0f51eb706914540",
+    "architecture": "arm64",
+    "created": "2026-09-24T17:25:07.41560568Z"
+  },
+  "wpos-mtt-assistant:0.5.0": {
+    "id": "sha256:6ea92ccff16c9195f2b3ed72f3a0f6464d4458b49d39a53d30e2b11056b974ee",
+    "architecture": "arm64",
+    "created": "2026-09-24T17:18:39.982418875Z"
+  }
+}

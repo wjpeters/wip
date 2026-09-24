@@ -1,55 +1,58 @@
 # Opleverstatus · 24 september 2026
 
-Release `0.2.0`, M0/M1, alleen lokaal demo/paper. Lokale branch `codex/m0-m1`; M0-commit `827e3a6`, M1-code/bewijs `45e7892`. Geen Git-remote of push. Geen `LIVE_VERIFIED` provider. De gebruiker verzorgt externe aansluitingen na oplevering. De ontwikkelomgeving en alle geheimen staan buiten iCloud. Zie [README](README.md).
+Release **0.5.0**, lokale M0–M5 demo/paper/read-only-applicatie op http://localhost:4186. Ontwerpbesluit `c8ca586`; implementatie en tests `7af54c9`. Branch `codex/m0-m1`, geen remote/push. De broncode, gegevens en sleutels staan buiten iCloud. De eigenaar verzorgt externe aansluitingen na oplevering.
 
 ## Gebouwd
 
-| Backlog | IMPLEMENTED | Afbakening |
-|---|---|---|
-| M0.1 | Inventarisatie en eigen lokale installatie | Oude Downloads-code en volumes behouden; eigen project/poort |
-| M0.2 | ADR voor SPA, marktlaag, ledger, bus, AI en tax | Drie echte containers; geen lege Rust/NATS/AI-services |
-| M0.3 | Canoniek schema en gegenereerde Python/TS/Rust | Runtimevalidatie Python; Rust compileert, geen actieve gateway |
-| M0.4 | Capability-/licentiematrix | Geen veronderstelde abonnementen; externe gebruiksrechten niet bewezen |
-| M0.5 | Vier schermen, gedeelde componenten en ontwerpcontract | Voor implementatie opgesteld op basis van bestaande conceptbeelden |
-| M0.6 | Synthetische fixtures en modusgrenzen | Paper nooit onderdeel van echte administratie of tax |
-| M1.1 | Docker, lokale auth, CSRF, Host/Origin, healthchecks | Web op 127.0.0.1:4186; API/database intern |
-| M1.2 | Instrumentregistry, Kraken ticker/trade-parser en begrensde read-only probe | Parser getest; geen actieve feed of doorlopende reconnect-service |
-| M1.3 | Gekoppelde watchlist/chart/ticket, bronstatus, werkruimte | Candles/volume/SMA; vier intervallen; geen docking of multichart |
-| M1.4 | Spot limit IOC, bid/ask, fees, partial fills, risicolimieten | Fictieve vaste liquiditeit, 24/7 crypto; geen echte queuepositie/slippageclaim |
-| M1.5 | Atomische ledger, posities en vermogenssnapshot | Decimal, balanscontrole, unieke preview/order, herstartreconciliatie |
-| M1.6 | Trade Impact Preview en planbuffer | Alleen EUR-oefengeld; deterministisch cashpad, geen rendements- of belastingprognose |
-| M1.7 | Lab-tutorial voor volledige flow | Zonder providerkey uitvoerbaar; voortgang binnen huidige sessie |
-| Extra herstelbewijs | Versleutelde databaseback-up, lege restoretest, herstel naar nieuwe database | Handmatig; geen dagelijkse scheduler of externe back-uplocatie |
+| Mijlpaal | IMPLEMENTED binnen release-scope |
+|---|---|
+| M0/M1 | Behouden: lokale auth/Docker, canonieke contracten, paperpreview, atomische orders/ledger, oefenvermogen, herstelcontroles |
+| M2 | Coinbase/Alpaca/Kraken read-only adapters en optionele streamservice; bronkwaliteit/rechten/prioriteiten, prijsvergelijking, FX-contract, RSS/Atom/nieuws-JSON met revisies, kalender/sessies, profielen, L2/tape/coverage; multichart/indicatoren/screener |
+| M3 | DEMO/PERSONAL, privé/holding/werk-BV/eigendom en eliminaties; CSV/CAMT/broker-CSV preview/classificatie/reconciliatie; journal/correcties/kosten/FX/waarderingen/TWR/IRR; plannen/doelen/stress/Monte Carlo; afgebakende NL-2025 calculators/pensioen; entity-/versiegebonden handelsimpact |
+| M4 | Afzonderlijke Codex stdio-bridge met gepind protocol en streaming; Jev HTTP choice/noul/score; beperkte tools, gegevenspreview, lokale budgetten, evidencevalidatie, ABSTAIN, synthetische shadowevaluatie |
+| M5 | Officiële broncontrole en menselijke rule-review, scenariovergelijking, estateflow en encrypted vault, replay/backtest/tutorials, lokale kalendermonitor met slaap-/herstelstatus, performance/chaos/browserproeven, versleuteld herstel en documentatie |
+
+Volledige oorspronkelijke backlog-ID's, bewijs en grenzen: [acceptatiematrix](docs/evidence/M2-M5.md). 'Gebouwd' betekent niet 'extern aangesloten'. De oorspronkelijke backlognormen zijn niet aangepast.
 
 ## Getest
 
-- **52 backendtests geslaagd**, inclusief propertytests (100 voorbeelden), API, concurrentie, idempotentie, herstart en corrupte positie. Geen skips in Docker. Eén niet-blokkerende Starlette/httpx-deprecationwaarschuwing.
-- **4 browsertests geslaagd**: volledige workflow en responsive/toegankelijkheidscontrole, ieder in Chromium en WebKit.
-- Vijf formaten: 1440×900, 1920×1080, 3440×1440, 1024×768 en 390×844. Light/dark, reduced motion, toetsenbord, Escape en horizontale reflow.
-- Axe WCAG 2 A/AA en 2.1 AA: geen gevonden overtredingen op de geteste terminal in beide thema's. Geen claim van volledige WCAG-certificering of handmatige screenreaderaudit.
-- TypeScript/Vite-build, ESLint, Ruff, Rust `cargo check --locked`, gegenereerde contracten zonder drift.
-- Versleutelde back-up hersteld naar nieuwe database: cash, orders en ledger identiek; gewijzigde ciphertext geweigerd.
-- Warm snapshotbenchmark en lokale hostgegevens: [bewijs](docs/evidence/M1.md). Geen streaming-loadbenchmarkclaim.
+- **115 backendtests geslaagd in Docker, nul skips**: financiële invarianten, importconflicten, reversals, FX, ownership, fiscale voorbeelden/grenzen, sessies/CSRF, providerfixtures, revisies, replay, jobs, vault en toegangsscheiding.
+- **12 AI-adaptertests geslaagd**, ook in een container zonder netwerk. Echte Codex CLI 0.141.0 initialiseert via stdio zonder modelcall. Echte accountlogin/modelturns blijven niet uitgevoerd.
+- **13 browsertests geslaagd in Chromium/WebKit**. Eén expliciete skip: de dubbele synthetische belastingsproef in WebKit; alle functionele workflows lopen in beide engines.
+- Viewports 1440×900, 1920×1080, 3440×1440, 1024×768 en 390×844; licht/donker-terminal, toetsenbord, reduced motion, reflow en axe op geteste schermen. Geen gevonden axe-overtredingen; geen claim van volledige toegankelijkheidscertificering.
+- TypeScript/Vite, ESLint, Ruff, Rust `cargo check --locked`, herhaalbare canonieke export en gegenereerde Pythonmodellen: geslaagd. Eén bekende niet-blokkerende Starlette/httpx-deprecationwaarschuwing.
+- 500.000 synthetische events, vier charts/twintig boeken: nul sequencegaps en nul onverklaard verlies. Displaycoalescing afzonderlijk geteld. Lokale receive-to-paint p50/p95/p99 **25,7 / 33,1 / 34,1 ms**. Dit meet geen provider/netwerk of financiële requestlatentie.
+- Verse Docker-installatie op nieuw volume: onboarding, lege posities/vermogen en lege PERSONAL-administratie geslaagd. Optionele services starten met lege configuratie en doen geen externe calls.
+- Back-up teruggezet naar nieuwe database: **alle tien tabelhashes identiek, zeven kluisdocumenten ontsleuteld en gecontroleerd**, gewijzigde ciphertext afgewezen. Actieve gebruikersdatabase niet overschreven.
+- Upgrade 0.2.0 → 0.5.0: account, één bestaande paperorder, vijf ledgerregels, gebruikersgegevens, sessie en preview onveranderd; oude auditregels behouden, één verwachte STARTUP_RECONCILIATION toegevoegd.
+- Twaalf officiële fiscale bronnen succesvol opgehaald. Eerste downloadfout apart bewaard; ruleset blijft **NEEDS_HUMAN_REVIEW**.
 
-## Ontbrekende toegang versus ontbrekende implementatie
+Bewijs: [checks](docs/evidence/release-checks.json), [browserrapport](docs/evidence/e2e-results.json), [screenshots](docs/evidence/M2-M5.md), [belastingproef](docs/evidence/stream-performance.json), [restore](docs/evidence/backup-restore-m5.json), [upgrade](docs/evidence/upgrade-preservation.json), [containerhashes](docs/evidence/release-images.json).
 
-| Onderdeel | Fixture/contracttest | Echte aansluiting | Nog nodig |
+## Ontbrekende toegang
+
+| Aansluiting | Getest | Echte connectorstatus | Nodig van eigenaar |
 |---|---|---|---|
-| Lokale demobron | TESTED_WITH_FIXTURES | Niet van toepassing | Geen toegang nodig |
-| Kraken publieke Spot v2 | TESTED_WITH_FIXTURES | NOT_RUN_EXTERNAL_NETWORK | Publieke feed vereist geen key; eigenaar koppelt en verifieert feed, rechten, timestamps, reconnect/gaps |
-| Codex | Bevoegdheids-/privacygrens getest | NOT_RUN_MISSING_CREDENTIALS | **Ook runtimebridge M4 nog niet gebouwd**, niet alleen een ontbrekende key |
-| Jev/TypeSafe | ABSTAIN en privacygrens getest | NOT_RUN_MISSING_CREDENTIALS | **Ook HTTP-adapter/evaluatie M4 nog niet gebouwd** |
-| Andere markt-/bank-/brokerproviders | NOT_IN_SCOPE M2/M3 | Niet aangesloten | Adapterimplementatie, rechten en verificatie |
-| Nederlandse fiscale regels | Afwijzing zonder approved ruleset getest | Geen actieve ruleset | M3/M5-calculators en officiële voorbeeldtests nog niet gebouwd |
+| Synthetische demo | TESTED_WITH_FIXTURES + end-to-end | Niet van toepassing | Niets |
+| Kraken/Coinbase publieke feeds | Normalisatie, subscribe, gaps, disconnect/stale | NOT_RUN_EXTERNAL_NETWORK | Expliciete read-only activatie, bronrechten, werkelijke feedverificatie; publieke kanalen hebben geen accountkey nodig |
+| Alpaca aandelen | TESTED_WITH_FIXTURES | NOT_RUN_MISSING_CREDENTIALS | Eigen key/secret, exacte feed-entitlements en gebruiksrechten |
+| ECB/SEC | XML/companyfacts-contracttests, begrensde probe gebouwd | NOT_RUN_EXTERNAL_NETWORK | Providerverificatie, SEC-contact; geen actieve backfill |
+| Nieuws-/kalenderleveranciers | RSS/Atom/JSON-import + lokale/synthetische events | BLOCKED_ACCESS voor echte betaalde/licensed feed | Toegestane bronnen/licentie; geen leverancierdata verondersteld |
+| Codex/Jev | Protocol/HTTP/privacy/budgetfixtures; echte offline CLI-init | NOT_RUN_MISSING_CREDENTIALS | Eigen toegang, beschikbare gepinde modellen, expliciete kosten-/datascopekeuze, kwaliteitsevaluatie |
+| Bank/broker | Lokale CSV/CAMT/broker-CSV | Geen accountverbinding | De import werkt zonder API; een eventuele directe bankadapter is aanvullende integratie |
+| Fiscale review | Officiële bronnen + deterministische tests | NEEDS_HUMAN_REVIEW | Menselijke beoordeling van ondersteunde scope/formule/bronbinding |
 
-## Bekende beperkingen
+## Afbakening en beperkingen
 
-De volledige M2–M5-scope uit het bouwplan is niet af: multi-source, nieuws/kalender, L2, imports, privé/BV-consolidatie, pensioen/fiscaliteit, echte AI, replay en zware prestatietests ontbreken. M6/M7 en alle live acties blijven uit.
+- Fiscaliteit ondersteunt uitsluitend de beschreven **NL-2025-scope**. Geen volledige IB-aangifte, automatisch netto pensioen/AOW, internationale situaties of fiscaal certificaat. Zie [TAX_SCOPE](docs/runbooks/TAX_SCOPE.md).
+- Geen wereldwijde realtimehistorie, ETF-holdingsfeed, historische providerbackfill of automatische volledige corporate-actionadministratie. Profielvelden zonder bron blijven onbekend. Handmatige splits en cash/assetwaarderingen zijn gebouwd. Nieuwsclustering is exact, geen semantische eventherkenning.
+- Bronprioriteit is configureerbaar; incompatibele venue/feed/session/delay kan niet geruisloos als equivalent worden gekozen. Realtimebronweergave gebruikt snapshots om de twee seconden; de synthetic engineeringbenchmark is geen end-to-end live-servicebenchmark.
+- De scenario-engine gebruikt expliciete aannames; geen automatische actuariële uitkeringsfase of fiscaal afgeleide huishoudfeiten. TWR/IRR vereisen juiste historische waarden en kasstromen.
+- Documentvault is lokaal versleuteld. De automatische broncontrole is handmatig gestart, geen dagelijkse scheduler. Lokale kalenderwaarschuwingen werken alleen terwijl Docker draait; geen e-mail/push/Apple Agenda-koppeling. Gemiste monitoring wordt zichtbaar.
+- Back-ups staan lokaal; geen off-device beleid, automatische rotatie of back-up van providerconfig/AI-volume. Geen bescherming tegen hostverlies zonder eigen veilige externe kopie.
+- Alleen arm64 op deze Mac getest; WebKit is de testengine, geen afzonderlijke handmatige Safari-versie. 200% reflow via equivalent CSS-venster; geen native zoomaudit. Geen LAN/TLS/multi-user installatie of onafhankelijke pentest.
+- **M6 liveorders en M7 derivaten: NOT_IN_SCOPE.** Geen betaalde dienst of vertrouwelijke cloudupload geactiveerd.
 
-M1 gebruikt drie vaste synthetische EUR-spotparen; er stroomt geen realtime marktdata. De UI toont maximaal de laatste 100 orders/journaalregels; het ledger-API ondersteunt paginatie en de database bewaart de volledige historie. Vermogenshistorie toont de laatste 100 ordermomenten en is geen volledige performanceberekening. Layout is vast responsief, geen dockbare workspace. Cashpad is reserve/inleg/uitgaven, geen Monte Carlo.
+## Volgende concrete stap
 
-WebKit is de automatiseringsengine, geen apart handmatig geteste Safari-versie. Reflow bij 960×540 is getest als equivalent CSS-venster voor 200% op 1920×1080; native browserzoom is niet afzonderlijk bewezen. Alleen arm64 op deze Mac is uitgevoerd; amd64 niet getest. Sessies zijn lokaal HTTP/localhost; geen LAN/TLS-opstelling. PostgreSQL draait in het standaardimage, app/web als non-root. Audit is append-only via de API, niet bestand tegen een hostbeheerder die de database direct wijzigt.
-
-## Reproduceren en eerstvolgende taak
-
-Volg [INSTALLATION](docs/runbooks/INSTALLATION.md) voor exacte testcommando's en [M1](docs/evidence/M1.md) voor logs/schermafbeeldingen. Volgende concrete integratietaak: activeer een afzonderlijke read-only Kraken-stream met bronbeleid, reconnect/gaptests en actuele bronstatus. Houd `kraken:*` gescheiden van `sim:*` en behoud paperrechten. Verdere uitbreiding volgt M2 → M3 → M4 → M5; wijzig de originele backlog niet in een fictieve DONE-lijst.
+Gebruik de lokale workflows nu; configureer daarna de gewenste providers volgens [PROVIDERS](docs/runbooks/PROVIDERS.md) en voer de echte read-only/modeltests uit voordat hun status naar LIVE_VERIFIED kan worden gezet. Een providerkey alleen vervangt rechtencontrole en verificatie niet. Installatie/testcommando's: [INSTALLATION](docs/runbooks/INSTALLATION.md).

@@ -17,3 +17,12 @@ Bewuste afwijkingen, vóór implementatie vastgelegd: drie synthetische instrume
 Gevonden en hersteld: chartattributie zat onder een `img`-rol met interactieve link (axe-fout); vervangen door een gelabelde region. Tabel- en bronlabels gecontroleerd op afsnijding. Chartprijzen naar nl-NL-formattering. Testbediening aangepast voor herhaald opslaan van gewijzigde planreserve, niet door asserts te verwijderen. Geen console-pageerrors in beide kritieke browserflows.
 
 Resterende grenzen: geen afzonderlijke handmatige screenreadertest, native Safari of native browserzoom; automatische axe-check van terminal, niet volledige certificering van alle schermen. Scope/inhoudverschillen met het brede productconcept staan expliciet in STATUS.
+
+
+## M2–M5 visuele controle · 24 september 2026
+
+De echte `chromium-expanded-scenario.png` is naast `references/planning.png` bekeken. Behouden: donkere grafietbasis, smalle rail, blauwe focus/acties, scenarioselectie links, groot vermogenspad en aansluitende gegevenscontrole. Bewuste aanpassing: invoer en opgeslagen resultaat hebben elk een volledig werkvlak; geen permanent smalle invoerkolom bij tientallen fiscale velden. De oudere reference bevat fictieve pensioen-/netto-inkomenscurves die niet als bestaande rekencapability zijn gekopieerd. Geblokkeerd pensioen en cashreserves staan expliciet apart.
+
+Administratie en Markten gebruiken dezelfde rij-/detailstructuur, componenten, tokens en scopebalk. Geteste beelden: 1440, 1920, 3440, 1024 en 390 breed, Chromium en WebKit. Mobiele tabellen scrollen binnen hun vlak; vaste navigatie blijft bereikbaar. Full-page mobiele screenshots bevatten de vaste balk op de viewportpositie, geen onbereikbare inhoud: de daadwerkelijke pagina blijft scrollbaar. Geen horizontale paginauitloop in de assertions.
+
+Reparaties uit browserproeven: eenduidige namen voor chartselecties, expliciete toegankelijkheidsnaam voor de omgeving en gegenereerde formuliervelden, bovenaan beginnen bij scenario-screenshots, ontbrekende tweekolomsopmaak Assistent. Lazy geladen werkruimtes houden de hoofdroute compact. Axe-controles op de primaire routes en licht/donker-terminal gaven geen overtredingen binnen de geteste regels. Geen volledige handmatige screenreader- of native Safari-certificering.

@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "scope": "First setup and empty states on isolated new wpos-mtt-empty volume, Chromium 1672x940",
+  "scope": "First setup and empty states on isolated new wpos-mtt-fresh05b_mtt-data volume, Chromium 1672x940",
   "screenshots": [
     "fresh-onboarding.png",
     "fresh-terminal-native-reference-size.png",

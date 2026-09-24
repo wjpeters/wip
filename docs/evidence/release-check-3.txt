@@ -1,0 +1,2 @@
+    Checking mtt-contracts v0.1.0 (/Users/wp/WPOS-local/projects/modern-trade-terminal/packages/contracts/rust)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.56s

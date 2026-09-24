@@ -1,0 +1,4 @@
+
+> modern-trade-terminal-web@0.5.0 lint
+> eslint src
+

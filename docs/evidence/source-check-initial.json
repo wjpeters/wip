@@ -1,0 +1,317 @@
+{
+  "version": "nl-2025-scope-1.0.0",
+  "hash": "7c980c9f3ea07eae60642dbaf6873cbf5cf8a83067f443d975607d0175da4a6f",
+  "year": 2025,
+  "jurisdiction": "NL",
+  "currency": "EUR",
+  "legal_status": "ENACTED_2025_SCOPED",
+  "effective_from": "2025-01-01",
+  "effective_to": "2025-12-31",
+  "review_status": "NEEDS_HUMAN_REVIEW",
+  "parameters": {
+    "box1": {
+      "thresholds": [
+        "38441",
+        "76817"
+      ],
+      "rates": [
+        "0.3582",
+        "0.3748",
+        "0.4950"
+      ],
+      "aow_first_rate": "0.1792",
+      "older_first_threshold": "40502"
+    },
+    "box2": {
+      "threshold": "67804",
+      "rates": [
+        "0.245",
+        "0.31"
+      ]
+    },
+    "box3": {
+      "savings": "0.0137",
+      "other": "0.0588",
+      "debt": "0.0270",
+      "debt_threshold": "3800",
+      "exemption": "57684",
+      "rate": "0.36"
+    },
+    "pension": {
+      "cap": "137800",
+      "franchise": "18475",
+      "percentage": "0.30",
+      "factor_a": "6.27",
+      "net_factor": "0.505",
+      "reserve_cap": "42108"
+    },
+    "gift_estate": {
+      "threshold": "154197",
+      "child": [
+        "0.10",
+        "0.20"
+      ],
+      "grandchild": [
+        "0.18",
+        "0.36"
+      ],
+      "other": [
+        "0.30",
+        "0.40"
+      ],
+      "gift_child": "6713",
+      "gift_other": "2690",
+      "estate_child": "25490",
+      "estate_grandchild": "25490",
+      "estate_other": "2690"
+    }
+  },
+  "sources": [
+    {
+      "id": "box1",
+      "url": "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/inkomstenbelasting/heffingskortingen_boxen_tarieven/boxen_en_tarieven/box_1/",
+      "topic": "Box 1 tarieven"
+    },
+    {
+      "id": "box2",
+      "url": "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/vermogen_en_aanmerkelijk_belang/aanmerkelijk_belang/inkomsten_uit_aanmerkelijk_belang/",
+      "topic": "Box 2 bruto en voorheffing"
+    },
+    {
+      "id": "box3",
+      "url": "https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/content/berekening-box-3-inkomen-2025",
+      "topic": "Box 3 forfait 2025"
+    },
+    {
+      "id": "actual",
+      "url": "https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/content/rekenvoorbeelden-berekening-werkelijk-rendement",
+      "topic": "Werkelijk rendement"
+    },
+    {
+      "id": "pension",
+      "url": "https://www.belastingdienst.nl/wps/wcm/connect/fisin/fisin2025/uitgaven_voor_inkomensvoorzieningen",
+      "topic": "Lijfrente en tienjaarsperiode"
+    },
+    {
+      "id": "pension-regimes",
+      "url": "https://kennisgroepen.belastingdienst.nl/publicaties/kg07020243-vragen-en-antwoorden-over-de-jaarruimteberekening-en-de-opbouw-van-pensioenaanspraken/",
+      "topic": "Factor A en WTP"
+    },
+    {
+      "id": "parameters-2025",
+      "url": "https://open.overheid.nl/documenten/dcbb490f-d406-4842-ac33-b5c397e19df0/file",
+      "topic": "Offici\u00eble fiscale parameters 2025"
+    },
+    {
+      "id": "indexation",
+      "url": "https://zoek.officielebekendmakingen.nl/stcrt-2025-40487.html",
+      "topic": "Bestaande 2025 franchise/reserveringsgrens versus wijzigingen 2026"
+    },
+    {
+      "id": "gift-rates",
+      "url": "https://www.belastingdienst.nl/wps/wcm/connect/nl/schenken/content/tarieven-schenkbelasting-2025",
+      "topic": "Tarieven schenkbelasting 2025"
+    },
+    {
+      "id": "gift-exemptions",
+      "url": "https://www.belastingdienst.nl/wps/wcm/connect/nl/schenken/content/tot-welk-bedrag-belastingvrij-schenken-in-2025",
+      "topic": "Jaarlijkse schenkvrijstellingen"
+    },
+    {
+      "id": "estate-exemptions",
+      "url": "https://www.belastingdienst.nl/wps/wcm/connect/nl/erfbelasting/content/vrijstelling-erfbelasting-2025",
+      "topic": "Erfvrijstellingen 2025"
+    },
+    {
+      "id": "estate-rates",
+      "url": "https://download.belastingdienst.nl/belastingdienst/docs/toe_aangifte_erf_2025_suc0611t52fd.pdf",
+      "topic": "Aangiftetoelichting erfbelasting 2025"
+    }
+  ],
+  "scope": [
+    "Box 1 schijventarief v\u00f3\u00f3r heffingskortingen en voorheffingen",
+    "Box 2 positief regulier inkomen, opgegeven dividendvoorheffing",
+    "Box 3 volledig jaar: gewone banktegoeden, beleggingen en aftrekbare schulden; partnerverdeling expliciet",
+    "Lijfrente 2025 met bevestigd pensioenregime; historische ruimte uit bewijsstukken",
+    "Gewone geldschenking/nalatenschap aan kind, kleinkind of overige verkrijger"
+  ],
+  "exclusions": [
+    "Geen volledige IB-aangifte of berekening van heffingskortingen",
+    "Geen emigratie, overlijden in belastingjaar, buitenlandse vrijstelling, groene vrijstellingen, verliesverrekening of overgangsrecht",
+    "Geen Box 3 vastgoed/crypto-werkelijk-rendement zonder vooraf afzonderlijk berekende volledige input",
+    "Geen partner-erfvrijstelling/pensioenimputatie, vruchtgebruik, BOR, \u00e9\u00e9nmalige schenkvrijstelling of vrij-van-rechtberekening"
+  ],
+  "approval": null,
+  "checks": {
+    "box1": {
+      "url": "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/inkomstenbelasting/heffingskortingen_boxen_tarieven/boxen_en_tarieven/box_1/",
+      "mime": "text/html; charset=utf-8",
+      "bytes": 48176,
+      "status": "BASELINE_CAPTURED",
+      "failure": null,
+      "raw_hash": "48668c149887d4e7ff13d729b2ff26d84751cf103d1bb99d7e537d3e7eb8310f",
+      "checked_at": "2026-09-24T17:22:52.986015+00:00",
+      "latest_hash": "d011317147866b01a6024897dca877ffee9bf0c0d9e8ac504e64fa3ed7fcf1ee",
+      "previous_hash": null
+    },
+    "box2": {
+      "url": "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/vermogen_en_aanmerkelijk_belang/aanmerkelijk_belang/inkomsten_uit_aanmerkelijk_belang/",
+      "mime": "text/html; charset=utf-8",
+      "bytes": 26597,
+      "status": "BASELINE_CAPTURED",
+      "failure": null,
+      "raw_hash": "47a3ed3d196dbf09773790ed22ccbb3b2c33cd9b52fcaa320b31048f18d10e51",
+      "checked_at": "2026-09-24T17:22:53.233433+00:00",
+      "latest_hash": "83efbacb2998cbbe35e7cda136b26fc33ede38da779cd3a4d389eb2651124f8a",
+      "previous_hash": null
+    },
+    "box3": {
+      "url": "https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/content/berekening-box-3-inkomen-2025",
+      "mime": "text/html; charset=utf-8",
+      "bytes": 34381,
+      "status": "BASELINE_CAPTURED",
+      "failure": null,
+      "raw_hash": "47fa4e187efdad1985f2a51003591504e7fb5515be7ff17e4a1c1b7e2193fb3b",
+      "checked_at": "2026-09-24T17:22:53.261583+00:00",
+      "latest_hash": "401f4d2464866ccbff69a0d78ba0238928e5b097e4da35e90e87ce23b8c1ed78",
+      "previous_hash": null
+    },
+    "actual": {
+      "url": "https://www.belastingdienst.nl/wps/wcm/connect/nl/box-3/content/rekenvoorbeelden-berekening-werkelijk-rendement",
+      "mime": "text/html; charset=utf-8",
+      "bytes": 41946,
+      "status": "BASELINE_CAPTURED",
+      "failure": null,
+      "raw_hash": "df761118ad80f3ce72a1d10bde8e6d40cb99655e62fa8fe9a97b32b93ca6c10e",
+      "checked_at": "2026-09-24T17:22:53.289681+00:00",
+      "latest_hash": "8741d71bf189f859e101ffff7d88e2c74ff79e8975cb7c60337859c231724545",
+      "previous_hash": null
+    },
+    "pension": {
+      "url": "https://www.belastingdienst.nl/wps/wcm/connect/fisin/fisin2025/uitgaven_voor_inkomensvoorzieningen",
+      "mime": "text/html; charset=utf-8",
+      "bytes": 39502,
+      "status": "BASELINE_CAPTURED",
+      "failure": null,
+      "raw_hash": "4d45a457d9c1237fac88f9fec210240b746ce6aa9a874a434f907ae82ebd2f31",
+      "checked_at": "2026-09-24T17:22:53.341159+00:00",
+      "latest_hash": "a26bd58ab2b6f02b2b6a3d3791172454b716e67ae2be8391ee9b1dedaab2dcef",
+      "previous_hash": null
+    },
+    "gift-rates": {
+      "url": "https://www.belastingdienst.nl/wps/wcm/connect/nl/schenken/content/tarieven-schenkbelasting-2025",
+      "mime": "text/html; charset=utf-8",
+      "bytes": 16378,
+      "status": "BASELINE_CAPTURED",
+      "failure": null,
+      "raw_hash": "4691f17585c12cc96207ea93ce5f61675c231bce2c3c4c9642f35c4437fb13b8",
+      "checked_at": "2026-09-24T17:22:58.919787+00:00",
+      "latest_hash": "e379d8f75d368bc57bafa270a965a0353f37bd73ba218f3ead2f6a92ad9a3346",
+      "previous_hash": null
+    },
+    "indexation": {
+      "url": "https://zoek.officielebekendmakingen.nl/stcrt-2025-40487.html",
+      "mime": "text/html; charset=utf-8",
+      "bytes": 178143,
+      "status": "BASELINE_CAPTURED",
+      "failure": null,
+      "raw_hash": "1e79e2edb3633a4f85e84c625b3c21486b584b280a8fdd73559afc189ce588e8",
+      "checked_at": "2026-09-24T17:22:53.991907+00:00",
+      "latest_hash": "4cb8480686e04db37754c73c4dda4a499d27dfe558668eeb52a79d643ad7623a",
+      "previous_hash": null
+    },
+    "estate-rates": {
+      "url": "https://download.belastingdienst.nl/belastingdienst/docs/toe_aangifte_erf_2025_suc0611t52fd.pdf",
+      "status": "FETCH_FAILED",
+      "failure": "HTTPStatusError",
+      "checked_at": "2026-09-24T17:22:59.094920+00:00"
+    },
+    "gift-exemptions": {
+      "url": "https://www.belastingdienst.nl/wps/wcm/connect/nl/schenken/content/tot-welk-bedrag-belastingvrij-schenken-in-2025",
+      "mime": "text/html; charset=utf-8",
+      "bytes": 21984,
+      "status": "BASELINE_CAPTURED",
+      "failure": null,
+      "raw_hash": "371af090f9d8de7686576669d6f1907870c6d762ee1766de6cd1f529bbac14c1",
+      "checked_at": "2026-09-24T17:22:59.015999+00:00",
+      "latest_hash": "5bc8490f2b236ceb6dbb52f99535d89974f3bcf22832ab919ab844b34a914467",
+      "previous_hash": null
+    },
+    "parameters-2025": {
+      "url": "https://open.overheid.nl/documenten/dcbb490f-d406-4842-ac33-b5c397e19df0/file",
+      "mime": "application/pdf",
+      "bytes": 1717428,
+      "status": "BASELINE_CAPTURED",
+      "failure": null,
+      "raw_hash": "07073ed7d80d5f9e27a98a18f242801d8cb73cf1c509ac5a3a673dc480789799",
+      "checked_at": "2026-09-24T17:22:53.636695+00:00",
+      "latest_hash": "07073ed7d80d5f9e27a98a18f242801d8cb73cf1c509ac5a3a673dc480789799",
+      "previous_hash": null
+    },
+    "pension-regimes": {
+      "url": "https://kennisgroepen.belastingdienst.nl/publicaties/kg07020243-vragen-en-antwoorden-over-de-jaarruimteberekening-en-de-opbouw-van-pensioenaanspraken/",
+      "mime": "text/html; charset=UTF-8",
+      "bytes": 93190,
+      "status": "BASELINE_CAPTURED",
+      "failure": null,
+      "raw_hash": "b92485ba8ac0dcdbd5b1afef63f550f0e9168efdbe57dd9712a01a43185bfe27",
+      "checked_at": "2026-09-24T17:22:53.370662+00:00",
+      "latest_hash": "151710faa9c21717faceff38f5217149bd022bb3aa1295b4c8da0c1302eca3fb",
+      "previous_hash": null
+    },
+    "estate-exemptions": {
+      "url": "https://www.belastingdienst.nl/wps/wcm/connect/nl/erfbelasting/content/vrijstelling-erfbelasting-2025",
+      "mime": "text/html; charset=utf-8",
+      "bytes": 18449,
+      "status": "BASELINE_CAPTURED",
+      "failure": null,
+      "raw_hash": "c5e0e6f468b74d587dbfdd929ac6a1aa82d1f55df666d0e206bd532a5b5b0608",
+      "checked_at": "2026-09-24T17:22:59.044428+00:00",
+      "latest_hash": "ee633f94124316fcc5eb9daefd2e13eeaf3240a4c3d0a1bab414b6813e3e06ff",
+      "previous_hash": null
+    }
+  },
+  "reviews": [],
+  "test_report": {
+    "passed": true,
+    "cases": [
+      {
+        "calculator": "box2",
+        "field": "remaining_tax",
+        "expected": "950.00",
+        "actual": "950.00",
+        "passed": true,
+        "source_id": "box2"
+      },
+      {
+        "calculator": "box3",
+        "field": "tax",
+        "expected": "455.00",
+        "actual": "455.00",
+        "passed": true,
+        "source_id": "box3"
+      },
+      {
+        "calculator": "box3",
+        "field": "tax",
+        "expected": "4638.00",
+        "actual": "4638.00",
+        "passed": true,
+        "source_id": "box3"
+      },
+      {
+        "calculator": "box3",
+        "field": "tax",
+        "expected": "85.00",
+        "actual": "85.00",
+        "passed": true,
+        "source_id": "box3"
+      }
+    ],
+    "rule_hash": "7c980c9f3ea07eae60642dbaf6873cbf5cf8a83067f443d975607d0175da4a6f"
+  },
+  "missing_source_checks": [
+    "estate-rates"
+  ],
+  "current_binding": "172ff325d9f6bb9c6221287ac5bc3cf28480b6fb0bf8271cdf84da97f2489de1"
+}

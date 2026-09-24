@@ -81,6 +81,382 @@
   },
   "suites": [
     {
+      "title": "expansion.spec.ts",
+      "file": "expansion.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "research, importpreview, scenario, fiscaliteit, vault en backtest",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8769,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T17:30:13.840Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "de5dd86fe8d99c93f505-83954e47dd82f38e8d97",
+          "file": "expansion.spec.ts",
+          "line": 9,
+          "column": 1
+        },
+        {
+          "title": "expanded workspaces reflow and accessibility",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8357,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T17:30:22.980Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "de5dd86fe8d99c93f505-37dc19ed2c8b3e446e70",
+          "file": "expansion.spec.ts",
+          "line": 23,
+          "column": 1
+        },
+        {
+          "title": "research, importpreview, scenario, fiscaliteit, vault en backtest",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8297,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T17:31:51.737Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "de5dd86fe8d99c93f505-140df98e044c4c8fb0dd",
+          "file": "expansion.spec.ts",
+          "line": 9,
+          "column": 1
+        },
+        {
+          "title": "expanded workspaces reflow and accessibility",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7992,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T17:32:00.777Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "de5dd86fe8d99c93f505-79ee75f3613bbf59419f",
+          "file": "expansion.spec.ts",
+          "line": 23,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "hardening.spec.ts",
+      "file": "hardening.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "assistant consent, no-provider abstention and offline explanation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1797,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T17:30:31.351Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8bcb3914a136f2f7596e-fe6c4b1484a13b54b9cb",
+          "file": "hardening.spec.ts",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "four charts, indicator controls, docking and saved layout",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 990,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T17:30:33.154Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8bcb3914a136f2f7596e-14a93dc124e4a496ffc3",
+          "file": "hardening.spec.ts",
+          "line": 5,
+          "column": 1
+        },
+        {
+          "title": "synthetic reference load 200 instruments, four charts, 20 books",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 110000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 70935,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T17:30:34.150Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8bcb3914a136f2f7596e-4ab5a83d551ba45c06a6",
+          "file": "hardening.spec.ts",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "assistant consent, no-provider abstention and offline explanation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1990,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T17:32:08.784Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8bcb3914a136f2f7596e-75b91958c7ca01fc00c4",
+          "file": "hardening.spec.ts",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "four charts, indicator controls, docking and saved layout",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1619,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T17:32:10.780Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8bcb3914a136f2f7596e-1523bc73577c6ba8fecd",
+          "file": "hardening.spec.ts",
+          "line": 5,
+          "column": 1
+        },
+        {
+          "title": "synthetic reference load 200 instruments, four charts, 20 books",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "Single deterministic engineering run; browser workflows cover both engines",
+                  "location": {
+                    "file": "/Users/wp/WPOS-local/projects/modern-trade-terminal/apps/web/e2e/hardening.spec.ts",
+                    "line": 6,
+                    "column": 98
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 183,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-24T17:32:12.405Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "Single deterministic engineering run; browser workflows cover both engines",
+                      "location": {
+                        "file": "/Users/wp/WPOS-local/projects/modern-trade-terminal/apps/web/e2e/hardening.spec.ts",
+                        "line": 6,
+                        "column": 98
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "8bcb3914a136f2f7596e-c395dec07bf8c70ae92b",
+          "file": "hardening.spec.ts",
+          "line": 6,
+          "column": 1
+        }
+      ]
+    },
+    {
       "title": "workflow.spec.ts",
       "file": "workflow.spec.ts",
       "column": 0,
@@ -102,12 +478,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 4435,
+                  "duration": 4044,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-24T14:34:58.135Z",
+                  "startTime": "2026-09-24T17:31:45.104Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -136,12 +512,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2235,
+                  "duration": 2146,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-24T14:35:02.973Z",
+                  "startTime": "2026-09-24T17:31:49.155Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -170,12 +546,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 4326,
+                  "duration": 3724,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-24T14:35:05.614Z",
+                  "startTime": "2026-09-24T17:32:12.602Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -204,12 +580,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2745,
+                  "duration": 2709,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-09-24T14:35:10.799Z",
+                  "startTime": "2026-09-24T17:32:16.332Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -227,10 +603,10 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-09-24T14:34:57.628Z",
-    "duration": 15976.669000000002,
-    "expected": 4,
-    "skipped": 0,
+    "startTime": "2026-09-24T17:30:13.404Z",
+    "duration": 125734.52,
+    "expected": 13,
+    "skipped": 1,
     "unexpected": 0,
     "flaky": 0
   }

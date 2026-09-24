@@ -1,0 +1,174 @@
+{
+  "market": {
+    "mode": "READ_ONLY_LIVE",
+    "quotes": [],
+    "books": {},
+    "trades": {},
+    "health": {},
+    "bars": {},
+    "execution_enabled": false,
+    "retention": "Memory only; reset and resync after restart",
+    "notices": [],
+    "status": "WAITING_FOR_CONFIGURED_PROVIDER",
+    "display_refresh_seconds": 2
+  },
+  "ai": {
+    "enabled": false,
+    "codex_configured": false,
+    "jev_configured": false,
+    "protocol_version": "0.141.0",
+    "privacy": "PUBLIC_DATA_AI_ONLY",
+    "budget": {
+      "max_requests_per_day": 0,
+      "max_daily_microusd": 0,
+      "reserve_per_request_microusd": 0,
+      "used": {
+        "day": "",
+        "requests": 0,
+        "reserved_microusd": 0
+      }
+    },
+    "verification": "NOT_RUN_MISSING_CREDENTIALS_UNTIL_FIRST_VERIFIED_CALL",
+    "public_sources": [
+      {
+        "id": "news-demo-1",
+        "title": "Oefenbericht: Europese rentevergadering",
+        "snippet": "Synthetisch persbericht om broncontrole en rentegevoeligheid te oefenen.",
+        "url": "https://example.invalid/mtt/news/1",
+        "publisher": "fixture-centralbank",
+        "source_family": "fixture-centralbank",
+        "region": "EU",
+        "language": "nl",
+        "published_at": "2026-09-24T12:00:00+00:00",
+        "updated_at": null,
+        "first_available_at": "2026-09-24T12:00:00+00:00",
+        "event_time": null,
+        "quality": "SIMULATED",
+        "kind": "MACRO",
+        "rights": "OWN_SYNTHETIC",
+        "instruments": [
+          "EUR"
+        ],
+        "revision": 1,
+        "revision_of": null,
+        "fingerprint": "507c449b918422b67609ee813fa55c33c398f118a955fefacd4ee935faec9b07"
+      },
+      {
+        "id": "news-demo-2",
+        "title": "Oefenbericht: kwartaalresultaten technologiebedrijf",
+        "snippet": "Fictieve earningspublicatie. Er zijn geen echte omzet- of winstcijfers opgehaald.",
+        "url": "https://example.invalid/mtt/news/2",
+        "publisher": "fixture-issuer",
+        "source_family": "fixture-issuer",
+        "region": "US",
+        "language": "nl",
+        "published_at": "2026-09-24T12:00:00+00:00",
+        "updated_at": null,
+        "first_available_at": "2026-09-24T12:00:00+00:00",
+        "event_time": null,
+        "quality": "SIMULATED",
+        "kind": "EARNINGS",
+        "rights": "OWN_SYNTHETIC",
+        "instruments": [
+          "AAPL"
+        ],
+        "revision": 1,
+        "revision_of": null,
+        "fingerprint": "a58e0110ad3bb9c6a90e8f39fc3a82c3281af743c93620d897e966adcd40f10b"
+      },
+      {
+        "id": "news-demo-3",
+        "title": "Oefenbericht: Aziatische handelsdag",
+        "snippet": "Fictieve marktcontext; geen actuele gebeurtenis of koersverwachting.",
+        "url": "https://example.invalid/mtt/news/3",
+        "publisher": "fixture-asia",
+        "source_family": "fixture-asia",
+        "region": "ASIA",
+        "language": "nl",
+        "published_at": "2026-09-24T12:00:00+00:00",
+        "updated_at": null,
+        "first_available_at": "2026-09-24T12:00:00+00:00",
+        "event_time": null,
+        "quality": "SIMULATED",
+        "kind": "MARKET",
+        "rights": "OWN_SYNTHETIC",
+        "instruments": [
+          "BTC"
+        ],
+        "revision": 1,
+        "revision_of": null,
+        "fingerprint": "4fdc17220b0abcd5c904fcbb123b29c3344f5448fbde66bf810ea3dfea4a82d2"
+      },
+      {
+        "id": "news-demo-4",
+        "title": "Oefenbericht: netwerkupdate",
+        "snippet": "Een fictieve technische wijziging voor de reviewworkflow.",
+        "url": "https://example.invalid/mtt/news/4",
+        "publisher": "fixture-network",
+        "source_family": "fixture-network",
+        "region": "EU",
+        "language": "nl",
+        "published_at": "2026-09-24T12:00:00+00:00",
+        "updated_at": null,
+        "first_available_at": "2026-09-24T12:00:00+00:00",
+        "event_time": null,
+        "quality": "SIMULATED",
+        "kind": "TECHNOLOGY",
+        "rights": "OWN_SYNTHETIC",
+        "instruments": [
+          "ETH"
+        ],
+        "revision": 1,
+        "revision_of": null,
+        "fingerprint": "2ed23b8126441ba93acecf54a55d966a25b5a7948b093cb9f409ca7b4cc78658"
+      },
+      {
+        "id": "news-demo-5",
+        "title": "Oefenbericht: kwartaalresultaten technologiebedrijf",
+        "snippet": "Herpublicatie van dezelfde synthetische bronfamilie.",
+        "url": "https://example.invalid/mtt/news/5",
+        "publisher": "fixture-issuer",
+        "source_family": "fixture-issuer",
+        "region": "US",
+        "language": "nl",
+        "published_at": "2026-09-24T12:00:00+00:00",
+        "updated_at": null,
+        "first_available_at": "2026-09-24T12:00:00+00:00",
+        "event_time": null,
+        "quality": "SIMULATED",
+        "kind": "EARNINGS",
+        "rights": "OWN_SYNTHETIC",
+        "instruments": [
+          "AAPL"
+        ],
+        "revision": 1,
+        "revision_of": null,
+        "fingerprint": "a58e0110ad3bb9c6a90e8f39fc3a82c3281af743c93620d897e966adcd40f10b"
+      },
+      {
+        "id": "news-demo-6",
+        "title": "Oefenbericht: correctie op netwerkupdate",
+        "snippet": "Versie 2 corrigeert versie 1. Beide versies blijven herkenbaar.",
+        "url": "https://example.invalid/mtt/news/6",
+        "publisher": "fixture-network",
+        "source_family": "fixture-network",
+        "region": "EU",
+        "language": "nl",
+        "published_at": "2026-09-24T12:00:00+00:00",
+        "updated_at": "2026-09-24T12:00:00+00:00",
+        "first_available_at": "2026-09-24T12:00:00+00:00",
+        "event_time": null,
+        "quality": "SIMULATED",
+        "kind": "CORRECTION",
+        "rights": "OWN_SYNTHETIC",
+        "instruments": [
+          "ETH"
+        ],
+        "revision": 2,
+        "revision_of": "news-demo-4",
+        "fingerprint": "eaa11a6e0e36847cf91b785a66af36bfe93739939f3cf6ea4c546cd4af93a8e0"
+      }
+    ],
+    "personal_uploads": false
+  }
+}
