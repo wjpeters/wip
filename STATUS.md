@@ -2,6 +2,13 @@
 
 Release **0.5.0**, lokale M0–M5 demo/paper/read-only-applicatie op http://localhost:4186. Ontwerpbesluit `c8ca586`; implementatie en tests `7af54c9`. Branch `codex/m0-m1`, geen remote/push. De broncode, gegevens en sleutels staan buiten iCloud. De eigenaar verzorgt externe aansluitingen na oplevering.
 
+## Vervolgwijziging · 29 september 2026 · niet vrijgegeven
+
+- Een read-only quote-router selecteert nu per economisch instrument de eerste verse, rechten-bevestigde bron die dezelfde valuta, sessie, correctiestatus en vertraging gebruikt. De API geeft PRIMARY, AUTO_FAILOVER of NO_ELIGIBLE_SOURCE plus bronredenen terug.
+- De marktenpagina toont de actieve selectie en brongezondheid. De terminal heeft een Bronnen-paneel naast de chart en een aparte live-referentie; de bestaande synthetische candlegrafiek, paperprijs en paperorders wisselen niet van venue.
+- Gerichte controle: 6 market-service tests, Ruff, TypeScript, ESLint en Vite production-build geslaagd.
+- Er zijn geen externe feeds geactiveerd. Failover is TESTED_WITH_FIXTURES; providerrechten en een echte netwerkverbinding zijn nog niet LIVE_VERIFIED. Releaseversie blijft 0.5.0 tot een afzonderlijke releasebeslissing.
+
 ## Gebouwd
 
 | Mijlpaal | IMPLEMENTED binnen release-scope |

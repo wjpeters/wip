@@ -14,6 +14,7 @@ from .markets import (
     ReferenceFX,
     compare_quotes,
     manifests,
+    select_display_quotes,
 )
 from .market import fixture_quote, fixture_trades, INSTRUMENTS, history
 from .research import (
@@ -66,6 +67,7 @@ def router(db, session, audit):
                 "books": {},
                 "trades": {},
                 "execution_enabled": False,
+                "display_routes": [],
             }
         token_path = Path("/run/secrets/market_token")
         if not token_path.exists():
@@ -88,7 +90,19 @@ def router(db, session, audit):
                 "books": {},
                 "trades": {},
                 "execution_enabled": False,
+                "display_routes": [],
             }
+        with db() as c:
+            preferences = document(
+                c,
+                "research",
+                lambda: {"articles": [], "priorities": ["demo-fixture", "kraken", "coinbase", "alpaca"]},
+            )
+        result["display_routes"] = select_display_quotes(
+            result.get("quotes", []),
+            result.get("health", {}),
+            preferences.get("priorities", []),
+        )
         return {
             **result,
             "status": "RECEIVING"

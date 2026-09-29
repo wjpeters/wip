@@ -85,6 +85,7 @@ class CoinbaseAdapter:
                         source_time=message["timestamp"],
                         received_at=utcnow(),
                         quality="REALTIME_UNVERIFIED",
+                        session="CONTINUOUS",
                     ).checked()
                 )
         return result
@@ -170,6 +171,81 @@ def compare_quotes(
         "reasons": [],
         "execution_allowed": False,
     }
+
+
+def select_display_quotes(quotes, health, priorities, max_age_seconds=5.0):
+    'Choose a fresh, rights-confirmed reference quote without granting execution authority.'
+    priority = {provider: rank for rank, provider in enumerate(priorities)}
+    groups = {}
+    for quote in quotes:
+        quality = quote.get('quality')
+        if quality == 'SIMULATED':
+            quality_family = 'SIMULATED'
+        else:
+            quality_family = 'DELAYED' if int(quote.get('delay_ms', 0)) else 'REALTIME'
+        key = (
+            quote.get('economic_id'),
+            quote.get('currency'),
+            quote.get('session'),
+            quote.get('adjustment'),
+            int(quote.get('delay_ms', 0)),
+            quality_family,
+        )
+        groups.setdefault(key, []).append(quote)
+
+    selections = []
+    for key, candidates in groups.items():
+        candidates.sort(key=lambda q: (priority.get(q.get('provider'), len(priority)), q.get('provider', '')))
+        eligible = []
+        diagnostics = []
+        for quote in candidates:
+            provider = quote.get('provider', '')
+            source_health = health.get(provider + ':quotes', {})
+            source_status = source_health.get('status', 'UNKNOWN')
+            try:
+                age = float(quote.get('age_seconds', float('inf')))
+            except (TypeError, ValueError):
+                age = float('inf')
+            reasons = []
+            if source_status != 'RECEIVING':
+                reasons.append('SOURCE_NOT_RECEIVING')
+            if age > max_age_seconds or quote.get('quality') == 'STALE':
+                reasons.append('QUOTE_STALE')
+            if quote.get('rights') != 'OPERATOR_CONFIRMED_DISPLAY':
+                reasons.append('DISPLAY_RIGHTS_UNCONFIRMED')
+            diagnostics.append({
+                'provider': provider,
+                'venue': quote.get('venue'),
+                'status': source_status,
+                'eligible': not reasons,
+                'reasons': reasons,
+            })
+            if not reasons:
+                eligible.append(quote)
+
+        selected = eligible[0] if eligible else None
+        chosen_rank = priority.get(selected.get('provider'), len(priority)) if selected else None
+        blocked_preferred = any(
+            not diagnostic['eligible']
+            and priority.get(diagnostic['provider'], len(priority)) < chosen_rank
+            for diagnostic in diagnostics
+        ) if selected else False
+        state = 'NO_ELIGIBLE_SOURCE' if selected is None else (
+            'AUTO_FAILOVER' if blocked_preferred else 'PRIMARY'
+        )
+        selections.append({
+            'economic_id': key[0],
+            'currency': key[1],
+            'session': key[2],
+            'adjustment': key[3],
+            'delay_ms': key[4],
+            'quality_family': key[5],
+            'state': state,
+            'selected': selected,
+            'candidates': diagnostics,
+            'execution_allowed': False,
+        })
+    return selections
 
 
 class ReferenceFX:

@@ -14,6 +14,13 @@ Optioneel Compose-bestand `infra/compose/market.yaml`, profiel `market`, start e
 - Coinbase Advanced Trade: ticker, market_trades, level2 met eigen verbinding/sequence-scope en heartbeat. Maker-side wordt naar taker-side vertaald. Gaps/disconnects wissen de vertrouwensstatus van het boek en vereisen snapshot.
 - Alpaca: quotes/trades/bars/updatedBars en correcties/cancels voor de expliciete symbolen in `AlpacaAdapter.symbols`. Vul feed en entitlements in naast key/secret. IEX wordt niet automatisch SIP. Oudere revisies buiten het geheugenvenster worden als ontbrekend gemeld. Geen historische backfill of brokerorderadapter.
 
+
+### Automatische failover voor referentiequotes
+
+GET /market/live bouwt per economisch instrument een read-only displayroute op basis van de opgeslagen bronvolgorde. De router kiest de eerste verse quote waarvan de feed RECEIVING is, de displayrechten zijn bevestigd en valuta, sessie, correctiestatus en vertraging overeenkomen. Een quote ouder dan vijf seconden, een disconnect of onbevestigde rechten maakt de bron ongeschikt. Incompatibele realtime- en vertraagde feeds blijven aparte routes.
+
+AUTO_FAILOVER betekent alleen dat een lagere compatibele bronvoorkeur wordt getoond nadat een hoger gerangschikte kandidaat ongeschikt is. De UI toont provider, venue, prijs en reden. De selectie is uitsluitend voor analyse en chartreferentie; zij wijzigt nooit een paper- of live ordervenue. Zonder aangesloten feeds blijft de status Geen geschikte feed; fixtures worden niet als live vervanger gebruikt. Deze router is met fixtures getest maar nog niet live geverifieerd.
+
 Start uitsluitend na je eigen keuze voor deze read-only providers:
 
 ```sh
