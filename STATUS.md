@@ -4,6 +4,8 @@ Release **0.5.0**, lokale M0–M5 demo/paper/read-only-applicatie op http://loca
 
 ## Vervolgwijziging · 29 september 2026 · niet vrijgegeven
 
+- Bevestigde volgende scope: crypto plus Amerikaanse aandelen/ETF’s, eerst met gratis bronnen en zonder betaald abonnement. Nieuwe en bestaande werkruimtes openen nu in de read-only marktstatus; een eerder opgeslagen Terminal-start wordt eenmalig naar Markten gemigreerd.
+- De demo blijft beschikbaar als expliciete paper-/Lab-oefenbron. Er zijn in deze stap geen providers geactiveerd en geen externe netwerkverbindingen gestart; providerkeuze, lokale toegang en rechtenverificatie volgen apart.
 - Een read-only quote-router selecteert nu per economisch instrument de eerste verse, rechten-bevestigde bron die dezelfde valuta, sessie, correctiestatus en vertraging gebruikt. De API geeft PRIMARY, AUTO_FAILOVER of NO_ELIGIBLE_SOURCE plus bronredenen terug.
 - De marktenpagina toont de actieve selectie en brongezondheid. De terminal heeft een Bronnen-paneel naast de chart en een aparte live-referentie; de bestaande synthetische candlegrafiek, paperprijs en paperorders wisselen niet van venue.
 - Gerichte controle: 6 market-service tests, Ruff, TypeScript, ESLint en Vite production-build geslaagd.
